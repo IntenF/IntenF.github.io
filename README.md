@@ -1,4 +1,4 @@
-<link rel="StyleSheet" href="./files/style.css" type="text/css" media="all">
+<link rel="StyleSheet" href="./style.css" type="text/css" media="all">
 
 <title>Learning to Anonymize Faces for Privacy Preserving Action Detection</title>
 <style type="text/css">
