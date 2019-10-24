@@ -19,6 +19,8 @@
 }
 #primarycontent p {
 	text-align: justify;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #primarycontent p iframe {
 	text-align: center;
@@ -40,7 +42,7 @@
 - 2018/8 野村総合研究所
 - 2019/2-2019/5 PKSHA株式会社
 
-## 作品,実績，コンテスト参加等
+## 作品 実績 コンテスト参加等
 
 ### 赤外線ラジコン
 PICマイコンで作った赤外線ラジコン．使用言語 PICアセンブリ
