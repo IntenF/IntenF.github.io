@@ -7,4 +7,4 @@ tabekko
 ### test header3
 unnchi
 
-[link test](amazon.com)
+[link test](https://amazon.com)
