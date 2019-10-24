@@ -39,7 +39,7 @@
 
 ### 赤外線ラジコン
 PICマイコンで作った赤外線ラジコン．使用言語 PICアセンブリ
-![赤外線ラジコンの図](./src/IR_rajikon.JPG)
+![赤外線ラジコンの図](./img/IR_rajikon.JPG)
 
 ## SNS
 - [Qiita](https://qiita.com/IntenF)
