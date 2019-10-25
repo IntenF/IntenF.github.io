@@ -94,6 +94,11 @@ GUGEN2017に提出し，予選を通過，本選展示も行った作品．
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6GtuL4mUTX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+### ごみApp　JPHACK2018
+ゴミ箱の場所がわかるサービスを実装．代表としてハッカソンに参加．ハッカソン初参加で東京地区を勝ち抜き，ファイナリストとして戦った．
+
+<iframe width="560" height="420" src="https://www.youtube.com/embed/nn_b1aQscYc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### IPA 未踏ターゲット事業　ゲート式量子コンピュータ
 「ゲート式量子コンピュータと機械学習による高速モンテカルロ計算」で採択された．ゲート式量子コンピュータを使って，モンテカルロ計算に使う乱数の生成を機械学習と併用することで高速化させるプロジェクト．2018/11-2020/2まで行った．
 
