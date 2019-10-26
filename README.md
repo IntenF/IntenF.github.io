@@ -33,6 +33,9 @@
 <div id="primarycontent">
 # Taichi Nakamura portfolio
 
+## 自己紹介
+科学技術的な
+
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
@@ -53,8 +56,16 @@
 - 組み込み系
 - 動画編集
 - 写真撮影
+- 言語
+	- Python, C++, javascript
 
 他にもサーバ系の管理，ゲート式量子コンピュータなど手広くやってまーす．
+
+## 論文
+### TMk-Anonymity: Perturbation-Based Data Anonymization Method for Improving Effectiveness of Secondary Use
+ノイズ付加による個人情報の匿名化についての研究.NTT の開発した従来手法よりも 100 倍程度ノイズ の付加を小さくいても同等の匿名性がある手法を開発した.
+
+- [IEEE Xplore](https://ieeexplore.ieee.org/document/8592838)
 
 ## 作品 実績 コンテスト参加等
 
