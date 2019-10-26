@@ -33,9 +33,6 @@
 <div id="primarycontent">
 # Taichi Nakamura portfolio
 
-## 自己紹介
-科学技術的な
-
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
@@ -47,19 +44,21 @@
 - 2019/2-2019/5 PKSHA株式会社
 
 ## 保有資格
-- 基本情報技術者
-- エンベデッドシステムスペシャリスト
+- 2015/5 基本情報技術者
+- 2017/6 エンベデッドシステムスペシャリスト
+- 2018/8 TOEIC 675
 
 ## 得意分野
 - 機械学習
+- 線形代数
+- 信号処理
 - 匿名加工研究
 - 組み込み系
 - 動画編集
 - 写真撮影
-- 言語
-	- Python, C++, javascript
+- プログラミング（アセンブリ言語、C/C++、Python、javascript）
 
-他にもサーバ系の管理，ゲート式量子コンピュータなど手広くやってまーす．
+他にも研究室のサーバを管理したり，自宅サーバ作ったり，ゲート式量子コンピュータなど手広くやってまーす．
 
 ## 論文
 ### TMk-Anonymity: Perturbation-Based Data Anonymization Method for Improving Effectiveness of Secondary Use
