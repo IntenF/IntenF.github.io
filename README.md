@@ -5,6 +5,7 @@
 
 
 <div id="primarycontent">
+
 # Taichi Nakamura portfolio
 
 ## 略歴
