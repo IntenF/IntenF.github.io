@@ -2,33 +2,7 @@
   参考URL（https://jason718.github.io/project/privacy/main.html）
 -->
 <link rel="StyleSheet" href="./style.css" type="text/css" media="all">
-<style type="text/css">
-#primarycontent h1 {
-	font-variant: small-caps;
-}
-#primarycontent h3 {
-}
-#primarycontent teasertext {
-	text-align: center;
-}
-#primarycontent p {
-	text-align: center;
-}
-#primarycontent {
-	text-align: justify;
-}
-#primarycontent p {
-	text-align: justify;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#primarycontent p iframe {
-	text-align: center;
-}
-.featart {
-  margin:4px;
-}
-</style>
+
 
 <div id="primarycontent">
 # Taichi Nakamura portfolio
@@ -36,7 +10,8 @@
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
-- 2018~ 慶應義塾大学大学院開放環境科学専攻
+- 2018 慶應義塾大学大学院開放環境科学専攻
+- 2020 NRI
 
 ## インターン歴
 - 2018/3-2018/8 SENSY株式会社
@@ -65,6 +40,11 @@
 ノイズ付加による個人情報の匿名化についての研究.NTT の開発した従来手法よりも 100 倍程度ノイズ の付加を小さくいても同等の匿名性がある手法を開発した.
 
 - [IEEE Xplore](https://ieeexplore.ieee.org/document/8592838)
+
+### Face Image Anonymization as an Application of Multidimensional Data K-Anonymizer
+StyleGANを利用した顔画像K匿名化についての研究。ニューラルネットなどの機械学習を匿名化に応用するアーキテクチャ"MIKU"を提案し、StyleGANの潜在空間上で顔画像を平均化することでビットマップ上で平均値を取るのに比べ人間の認識上の平均の顔に近い顔の生成に成功した。
+
+ - [IEEE Xplore](https://ieeexplore.ieee.org/document/8951681)
 
 ### Quantum self-learning Monte Carlo with quantum Fourier transform sampler
 適応的サンプリングを応用して高速にシミュレートした量子コンピュータとメトロポリスヘイスティングス法を用いて高速に任意の乱数をサンプリングする方法について研究した論文。比較対象とした一様分布の乱数生成に比べて目標分布の乱数を2倍程度効率良くサンプリングすることに成功した。
