@@ -66,6 +66,11 @@
 
 - [IEEE Xplore](https://ieeexplore.ieee.org/document/8592838)
 
+### Quantum self-learning Monte Carlo with quantum Fourier transform sampler
+適応的サンプリングを応用して高速にシミュレートした量子コンピュータとメトロポリスヘイスティングス法を用いて高速に任意の乱数をサンプリングする方法について研究した論文。比較対象とした一様分布の乱数生成に比べて目標分布の乱数を2倍程度効率良くサンプリングすることに成功した。
+
+- [arxiv](https://arxiv.org/abs/2005.14075)
+
 ## 作品 実績 コンテスト参加等
 
 ### IPA 未踏ターゲット事業　ゲート式量子コンピュータ
@@ -73,6 +78,7 @@
 
 <img src="https://www.ibm.com/blogs/think/jp-ja/wp-content/uploads/sites/21/2017/11/fb-ibmq3.jpg" itemprop="image" width="500" alt="機体画像">
 
+- [arxiv](https://arxiv.org/abs/2005.14075)
 - [IPA採択者一覧](https://www.ipa.go.jp/jinzai/target/2018/koubokekka2_index.html)
 
 ### ごみApp　JPHACK2018
