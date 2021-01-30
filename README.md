@@ -46,11 +46,13 @@
 StyleGANを利用した顔画像K匿名化についての研究。ニューラルネットなどの機械学習を匿名化に応用するアーキテクチャ"MIKU"を提案し、StyleGANの潜在空間上で顔画像を平均化することでビットマップ上で平均値を取るのに比べ人間の認識上の平均の顔に近い顔の生成に成功した。
 
  - [IEEE Xplore](https://ieeexplore.ieee.org/document/8951681)
+ - [Journal](http://ijnc.org/index.php/ijnc/article/view/244)
 
 ### Quantum self-learning Monte Carlo with quantum Fourier transform sampler
 適応的サンプリングを応用して高速にシミュレートした量子コンピュータとメトロポリスヘイスティングス法を用いて高速に任意の乱数をサンプリングする方法について研究した論文。比較対象とした一様分布の乱数生成に比べて目標分布の乱数を2倍程度効率良くサンプリングすることに成功した。
 
 - [arxiv](https://arxiv.org/abs/2005.14075)
+- [Journal](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.043442)
 
 ## 作品 実績 コンテスト参加等
 
