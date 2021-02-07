@@ -20,9 +20,12 @@
 - 2019/2-2019/5 PKSHA株式会社
 
 ## 保有資格
-- 2015/5 基本情報技術者
-- 2017/6 エンベデッドシステムスペシャリスト
+- 2015/5 [基本情報技術者](doc/基本情報技術者試験合格証明書.pdf)
+- 2017/6 [エンベデッドシステムスペシャリスト](doc/エンベデッドスペシャリスト合格証明書.pdf)
 - 2018/8 TOEIC 675
+- 2020/8 [AWS Cloud Practitioner](doc/AWS Certified Cloud Practitioner certificate.pdf)
+- 2020/9 [Oracle Master Bronze](https://www.youracclaim.com/badges/a793f2c0-f549-4b81-982e-43c6cac0e40b/public_url)
+- 2020/11 [AWS Solution Architect](doc/AWS Certified Solutions Architect - Associate certificate.pdf)
 
 ## 得意分野
 - 機械学習
