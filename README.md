@@ -26,6 +26,7 @@
 - 2020/8 [AWS Cloud Practitioner](doc/AWS Certified Cloud Practitioner certificate.pdf)
 - 2020/9 [Oracle Master Bronze](https://www.youracclaim.com/badges/a793f2c0-f549-4b81-982e-43c6cac0e40b/public_url)
 - 2020/11 [AWS Solution Architect](doc/AWS Certified Solutions Architect - Associate certificate.pdf)
+- 2021/06 [TOEIC 765](doc/20210620_TOEIC_765.pdf)
 
 ## 得意分野
 - 機械学習
