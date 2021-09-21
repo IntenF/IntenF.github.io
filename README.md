@@ -8,7 +8,6 @@
 
 # Taichi Nakamura portfolio
 
-<img src="img/engineer2021#2_regular.png" itemprop="image" width="100" alt="E資格ロゴ">
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
