@@ -8,6 +8,7 @@
 
 # Taichi Nakamura portfolio
 
+<img src="img/engineer2021#2_regular.png" itemprop="image" width="100" alt="E資格ロゴ">
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
@@ -27,6 +28,7 @@
 - 2020/09 [Oracle Master Bronze](https://www.youracclaim.com/badges/a793f2c0-f549-4b81-982e-43c6cac0e40b/public_url)
 - 2020/11 [AWS Solution Architect](doc/AWS Certified Solutions Architect - Associate certificate.pdf)
 - 2021/06 [TOEIC 765](img/20210620_TOEIC_765.jpg)
+- 2021/09 [E資格試験](doc/e_shikaku.txt)
 
 ## 得意分野
 - 機械学習
