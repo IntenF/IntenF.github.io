@@ -53,6 +53,8 @@ StyleGANを利用した顔画像K匿名化についての研究。ニューラ�
  - [IEEE Xplore](https://ieeexplore.ieee.org/document/8951681)
  - [Journal](http://ijnc.org/index.php/ijnc/article/view/244)
 
+ <iframe width="961" height="721" src="https://www.youtube.com/embed/v5a1_37su28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Quantum self-learning Monte Carlo with quantum Fourier transform sampler
 適応的サンプリングを応用して高速にシミュレートした量子コンピュータとメトロポリスヘイスティングス法を用いて高速に任意の乱数をサンプリングする方法について研究した論文。比較対象とした一様分布の乱数生成に比べて目標分布の乱数を2倍程度効率良くサンプリングすることに成功した。
 
