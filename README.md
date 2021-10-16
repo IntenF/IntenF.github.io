@@ -8,6 +8,9 @@
 
 # Taichi Nakamura portfolio
 
+## SNS
+**[Qiita](https://qiita.com/IntenF) [Youtube](https://www.youtube.com/channel/UCZTpRG2dGTNGmW_vOifaCLg) [Twitter](https://twitter.com/Inten_futosi) [Github](https://github.com/IntenF)**
+
 ## 略歴
 - 2014 栄光学園高等学校 卒業
 - 2018 慶應義塾大学理工学部 卒業
@@ -112,7 +115,5 @@ PICマイコンで作った赤外線ラジコン．使用言語 PICアセンブ�
 
 <img src="img/IR_rajikon.JPG" itemprop="image" width="500" alt="赤外線ラジコン"><!---#![赤外線ラジコンの図](./img/IR_rajikon.JPG) -->
 
-## SNS
-**[Qiita](https://qiita.com/IntenF) [Youtube](https://www.youtube.com/channel/UCZTpRG2dGTNGmW_vOifaCLg) [Twitter](https://twitter.com/Inten_futosi) [Github](https://github.com/IntenF)**
 
 </div>
