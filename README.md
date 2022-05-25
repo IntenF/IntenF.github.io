@@ -8,6 +8,8 @@
 
 # Taichi Nakamura portfolio
 
+## blog
+[太のブログ](https://intenf.com)
 ## SNS
 **[Qiita](https://qiita.com/IntenF) [Youtube](https://www.youtube.com/channel/UCZTpRG2dGTNGmW_vOifaCLg) [Twitter](https://twitter.com/Inten_futosi) [Github](https://github.com/IntenF)**
 
@@ -26,11 +28,14 @@
 - 2015/05 [基本情報技術者](doc/基本情報技術者試験合格証明書.pdf)
 - 2017/06 [エンベデッドシステムスペシャリスト](doc/エンベデッドスペシャリスト合格証明書.pdf)
 - 2018/08 TOEIC 675
-- 2020/08 [AWS Cloud Practitioner](doc/AWS Certified Cloud Practitioner certificate.pdf)
+- 2020/08 [AWS Cloud Practitioner](doc/AWS%20Certified%20Cloud%20Practitioner%20certificate.pdf)
 - 2020/09 [Oracle Master Bronze](https://www.youracclaim.com/badges/a793f2c0-f549-4b81-982e-43c6cac0e40b/public_url)
-- 2020/11 [AWS Solution Architect](doc/AWS Certified Solutions Architect - Associate certificate.pdf)
+- 2020/11 [AWS Solution Architect](doc/AWS%20Certified%20Solutions%20Architect%20-%20Associate%20certificate.pdf)
 - 2021/06 [TOEIC 765](img/20210620_TOEIC_765.jpg)
 - 2021/09 [E資格試験](doc/e_shikaku.txt)
+- 2021/11 [AWS Machine Learning Specialty](doc/AWS%20Certified%20Machine%20Learning%20-%20Specialty%20certificate.pdf)
+- 2022/02 [AWS Data Analytics Sepcialty](doc/AWS%20Certified%20Data%20Analytics%20-%20Specialty%20certificate.pdf)
+
 
 ## 得意分野
 - 機械学習
