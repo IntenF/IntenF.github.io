@@ -10,6 +10,7 @@
 
 ## blog
 [太のブログ](https://intenf.com)
+
 ## SNS
 **[Qiita](https://qiita.com/IntenF) [Youtube](https://www.youtube.com/channel/UCZTpRG2dGTNGmW_vOifaCLg) [Twitter](https://twitter.com/Inten_futosi) [Github](https://github.com/IntenF)**
 
