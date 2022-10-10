@@ -36,7 +36,7 @@
 - 2021/09 [E資格試験](doc/e_shikaku.txt)
 - 2021/11 [AWS Machine Learning Specialty](doc/AWS%20Certified%20Machine%20Learning%20-%20Specialty%20certificate.pdf)
 - 2022/02 [AWS Data Analytics Sepcialty](doc/AWS%20Certified%20Data%20Analytics%20-%20Specialty%20certificate.pdf)
-- 2022/08 統計検定準一級
+- 2022/08 統計検定準一級 [合格者照会(合格者番号:ebye-4vek-eane)](https://cbt.odyssey-com.co.jp/cbt/pass_reference_form.action)
 
 
 ## 得意分野
