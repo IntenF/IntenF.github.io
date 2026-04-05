@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Investment Signals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .signal-long { border-left: 4px solid #10B981; }
+        .signal-short { border-left: 4px solid #EF4444; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="max-w-md mx-auto p-4 pt-8">
+        <header class="mb-8 text-center">
+            <h1 class="text-2xl font-bold text-white mb-2">本日の推奨銘柄</h1>
+            <p class="text-sm text-gray-400">PCA SUB (λ=0.9) リードラグ戦略</p>
+            <div id="date-info" class="text-xs text-gray-500 mt-2">Loading...</div>
+        </header>
+
+        <div id="loading" class="text-center py-10">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+            <p class="mt-4 text-gray-400">シグナルを取得中...</p>
+        </div>
+
+        <div id="content" class="hidden space-y-6">
+            <!-- LONG SECTION -->
+            <section>
+                <h2 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    買い (Long) 上位30%
+                </h2>
+                <div id="long-list" class="space-y-3"></div>
+            </section>
+
+            <!-- SHORT SECTION -->
+            <section>
+                <h2 class="text-lg font-semibold text-red-400 mb-3 flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path></svg>
+                    売り (Short) 下位30%
+                </h2>
+                <div id="short-list" class="space-y-3"></div>
+            </section>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <a href="index.html" class="text-sm text-blue-400 hover:underline">← ポートフォリオへ戻る</a>
+        </div>
+    </div>
+
+    <script>
+        async function fetchSignals() {
+            try {
+                // To avoid cache in development/testing, add timestamp
+                const response = await fetch(`signals.json?t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error('Data not found');
+                const data = await response.json();
+                
+                document.getElementById('date-info').innerText = `対象日: ${data.target_jp_trade_date} (基準: ${data.latest_us_close_date})`;
+                
+                const longList = document.getElementById('long-list');
+                const shortList = document.getElementById('short-list');
+                
+                // Render Longs
+                data.long_etfs.forEach(item => {
+                    longList.innerHTML += `
+                        <div class="glass-panel signal-long rounded-lg p-3 flex justify-between items-center bg-gray-800/80">
+                            <div>
+                                <div class="font-bold text-gray-100">${item.name}</div>
+                                <div class="text-xs text-gray-400">${item.ticker}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-gray-500">Score</div>
+                                <div class="text-emerald-400 font-mono text-sm">${item.score.toFixed(3)}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Render Shorts
+                data.short_etfs.forEach(item => {
+                    shortList.innerHTML += `
+                        <div class="glass-panel signal-short rounded-lg p-3 flex justify-between items-center bg-gray-800/80">
+                            <div>
+                                <div class="font-bold text-gray-100">${item.name}</div>
+                                <div class="text-xs text-gray-400">${item.ticker}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-gray-500">Score</div>
+                                <div class="text-red-400 font-mono text-sm">${item.score.toFixed(3)}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('content').classList.remove('hidden');
+                
+            } catch (err) {
+                document.getElementById('loading').innerHTML = `
+                    <p class="text-red-400">データの読み込みに失敗しました。</p>
+                    <p class="text-sm text-gray-500 mt-2">※まだsignals.jsonが生成されていない可能性があります</p>
+                `;
+                console.error(err);
+            }
+        }
+        
+        fetchSignals();
+    </script>
+</body>
+</html>
