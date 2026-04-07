@@ -61,6 +61,37 @@ def build_prior_subspace(c_full, us_tickers, jp_tickers):
     np.fill_diagonal(c_0, 1.0)
     return c_0
 
+def get_signal_for_t(rc_all, c_0, current_t, lreg=0.9, L=60):
+    window = rc_all.iloc[current_t-L+1 : current_t+1]
+    mean_u = window.iloc[:, :N_U].mean().values
+    std_u = window.iloc[:, :N_U].std().values
+    
+    obs_u = rc_all.iloc[current_t, :N_U].values
+    zs_u = (obs_u - mean_u) / (std_u + 1e-8)
+    
+    Ct = window.corr().values
+    Ct_reg = (1 - lreg) * Ct + lreg * c_0
+    
+    evals_s, evecs_s = np.linalg.eigh(Ct_reg)
+    top_k_vecs_s = evecs_s[:, -3:]
+    V_U_s = top_k_vecs_s[:N_U, :]
+    V_J_s = top_k_vecs_s[N_U:, :]
+    
+    f_t_s = V_U_s.T @ zs_u
+    sig_pca_sub = V_J_s @ f_t_s
+    
+    sig_series = pd.Series(sig_pca_sub, index=JP_TICKERS)
+    
+    q = 0.3
+    n = len(sig_series.dropna())
+    k = max(1, int(n * q))
+    
+    ranks = sig_series.rank(method='first', na_option='keep')
+    long_idx = ranks.nlargest(k).index
+    short_idx = ranks.nsmallest(k).index
+    
+    return long_idx, short_idx, sig_series
+
 def main():
     print("Downloading YF data...")
     us_data = yf.download(US_TICKERS, start="2010-01-01", progress=False)
@@ -89,68 +120,100 @@ def main():
     L = 60
     lreg = 0.9
     
-    # We only care about the very last available date predicting TOMORROW for JP
+    # --- 1. Evaluate Historical Performance Since 2026-04-01 ---
+    eval_start_date = "2026-04-01"
+    valid_indices = np.where(rc_all.index >= eval_start_date)[0]
+    
+    capital_per_etf = 100000
+    cumulative_profit = 0
+    history = []
+    
+    for D_idx in valid_indices:
+        # We need the signal computed up to D_idx - 1 to formulate the return on D_idx
+        signal_t = D_idx - 1
+        if signal_t < L - 1:
+            continue
+            
+        D_date_str = rc_all.index[D_idx].strftime("%Y-%m-%d")
+        
+        long_idx, short_idx, sig_series = get_signal_for_t(rc_all, c_0, signal_t, lreg, L)
+        returns_on_D = rc_all.iloc[D_idx]
+        
+        daily_profit = 0
+        details = []
+        
+        for tck in long_idx:
+            ret = float(returns_on_D[tck])
+            profit = capital_per_etf * ret
+            daily_profit += profit
+            details.append({
+                "ticker": tck, 
+                "name": JP_TICKER_NAMES.get(tck, tck),
+                "type": "long", 
+                "return": ret, 
+                "profit": float(profit)
+            })
+            
+        for tck in short_idx:
+            ret = float(returns_on_D[tck])
+            profit = capital_per_etf * (-ret) # shorting profit
+            daily_profit += profit
+            details.append({
+                "ticker": tck, 
+                "name": JP_TICKER_NAMES.get(tck, tck),
+                "type": "short", 
+                "return": ret, 
+                "profit": float(profit)
+            })
+            
+        cumulative_profit += daily_profit
+        
+        # Sort details by profit descending for nice display
+        details = sorted(details, key=lambda x: x["profit"], reverse=True)
+        
+        history.append({
+            "date": D_date_str,
+            "daily_profit": float(daily_profit),
+            "cumulative_profit": float(cumulative_profit),
+            "details": details
+        })
+
+    # --- 2. Calculate Next JP Trading Day Signals ---
     t = len(rc_all) - 1
     t_date = rc_all.index[t]
     
-    window = rc_all.iloc[t-L+1 : t+1] # the last L days up to t
-    mean_u = window.iloc[:, :N_U].mean().values
-    std_u = window.iloc[:, :N_U].std().values
-    
-    obs_u = rc_all.iloc[t, :N_U].values
-    zs_u = (obs_u - mean_u) / (std_u + 1e-8)
-    
-    Ct = window.corr().values
-    Ct_reg = (1 - lreg) * Ct + lreg * c_0
-    
-    evals_s, evecs_s = np.linalg.eigh(Ct_reg)
-    top_k_vecs_s = evecs_s[:, -3:]
-    V_U_s = top_k_vecs_s[:N_U, :]
-    V_J_s = top_k_vecs_s[N_U:, :]
-    
-    f_t_s = V_U_s.T @ zs_u
-    sig_pca_sub = V_J_s @ f_t_s
-    
-    sig_series = pd.Series(sig_pca_sub, index=JP_TICKERS)
-    
-    q = 0.3
-    n = len(sig_series.dropna())
-    k = max(1, int(n * q))
-    
-    ranks = sig_series.rank(method='first', na_option='keep')
-    long_idx = ranks.nlargest(k).index
-    short_idx = ranks.nsmallest(k).index
+    long_idx_next, short_idx_next, sig_series_next = get_signal_for_t(rc_all, c_0, t, lreg, L)
     
     longs = []
     shorts = []
     
-    for tck in long_idx:
+    for tck in long_idx_next:
         longs.append({
             "ticker": tck,
             "name": JP_TICKER_NAMES.get(tck, tck),
-            "score": float(sig_series[tck])
+            "score": float(sig_series_next[tck])
         })
         
-    for tck in short_idx:
+    for tck in short_idx_next:
         shorts.append({
             "ticker": tck,
             "name": JP_TICKER_NAMES.get(tck, tck),
-            "score": float(sig_series[tck])
+            "score": float(sig_series_next[tck])
         })
         
-    # Sort just for nice display
     longs = sorted(longs, key=lambda x: x['score'], reverse=True)
     shorts = sorted(shorts, key=lambda x: x['score'])
     
+    # Structure final JSON
     output_data = {
         "calculated_at": datetime.now().isoformat(),
         "latest_us_close_date": t_date.strftime("%Y-%m-%d"),
         "target_jp_trade_date": "Next JP Trading Day",
         "long_etfs": longs,
-        "short_etfs": shorts
+        "short_etfs": shorts,
+        "history": history
     }
     
-    # Save to top level of the repo (3 levels up from scripts/update_signals.py)
     repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     output_path = os.path.join(repo_root, 'signals.json')
     with open(output_path, 'w', encoding='utf-8') as f:

@@ -3,75 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Investment Signals</title>
+    <title>Daily Investment Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .signal-long { border-left: 4px solid #10B981; }
         .signal-short { border-left: 4px solid #EF4444; }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-    <div class="max-w-md mx-auto p-4 pt-8">
-        <header class="mb-8 text-center">
-            <h1 class="text-2xl font-bold text-white mb-2">本日の推奨銘柄</h1>
-            <p class="text-sm text-gray-400">PCA SUB (λ=0.9) リードラグ戦略</p>
+<body class="bg-gray-900 text-gray-100 min-h-screen pb-10">
+    <div class="max-w-md mx-auto p-4 pt-8 space-y-6">
+        <header class="text-center">
+            <h1 class="text-2xl font-bold text-white mb-1">Lead-Lag Dashboard</h1>
+            <p class="text-sm text-gray-400">PCA SUB (λ=0.9) 戦略</p>
             <div id="date-info" class="text-xs text-gray-500 mt-2">Loading...</div>
         </header>
 
         <div id="loading" class="text-center py-10">
             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
-            <p class="mt-4 text-gray-400">シグナルを取得中...</p>
+            <p class="mt-4 text-gray-400">データを取得中...</p>
         </div>
 
-        <div id="content" class="hidden space-y-6">
-            <!-- LONG SECTION -->
-            <section>
-                <h2 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    買い (Long) 上位30%
-                </h2>
-                <div id="long-list" class="space-y-3"></div>
+        <div id="content" class="hidden space-y-8">
+            <!-- KPIs -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-panel rounded-xl p-4 text-center">
+                    <p class="text-xs text-gray-400 mb-1">昨日の利益 (概算)</p>
+                    <p id="kpi-daily" class="text-xl font-bold font-mono text-white">-</p>
+                </div>
+                <div class="glass-panel rounded-xl p-4 text-center">
+                    <p class="text-xs text-gray-400 mb-1">累計利益 (4/1～)</p>
+                    <p id="kpi-cumulative" class="text-xl font-bold font-mono text-white">-</p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="text-[10px] text-gray-500 bg-gray-800/50 rounded p-2">
+                ※ 各10万円ずつ投下したと仮定した、手数料やスプレッドを考慮しない「純粋なシグナルの理論上リターン（Gross Profit）」の計算です。売り（Short）はリターンの符号を反転して計算しています。
+            </div>
+
+            <!-- Chart -->
+            <section class="glass-panel rounded-xl p-4">
+                <h2 class="text-sm font-semibold text-gray-300 mb-4">累計利益の推移</h2>
+                <div class="relative h-48 w-full">
+                    <canvas id="profitChart"></canvas>
+                </div>
             </section>
 
-            <!-- SHORT SECTION -->
+            <!-- Yesterday's Breakdown -->
             <section>
-                <h2 class="text-lg font-semibold text-red-400 mb-3 flex items-center">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path></svg>
-                    売り (Short) 下位30%
+                <h2 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    昨日の銘柄別内訳
                 </h2>
-                <div id="short-list" class="space-y-3"></div>
+                <div id="breakdown-list" class="space-y-2"></div>
+            </section>
+
+            <!-- NEXT SIGNALS -->
+            <section>
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold text-white">次営業日のシグナル</h2>
+                    <p class="text-xs text-gray-400 mt-1">翌営業日に仕掛ける推奨銘柄</p>
+                </div>
+                
+                <h3 class="text-md font-semibold text-emerald-400 mb-2 flex items-center">
+                    買い (Long) 上位30%
+                </h3>
+                <div id="long-list" class="space-y-2 mb-6"></div>
+
+                <h3 class="text-md font-semibold text-red-400 mb-2 flex items-center">
+                    売り (Short) 下位30%
+                </h3>
+                <div id="short-list" class="space-y-2"></div>
             </section>
         </div>
         
-        <div class="mt-8 text-center">
-            <a href="index.html" class="text-sm text-blue-400 hover:underline">← ポートフォリオへ戻る</a>
+        <div class="mt-8 text-center hidden" id="back-link">
+            <a href="index.html" class="text-sm text-blue-400 hover:text-blue-300 transition-colors">← ポートフォリオへ戻る</a>
         </div>
     </div>
 
     <script>
+        function formatCurrency(amount) {
+            const prefix = amount >= 0 ? '+' : '';
+            return `${prefix}¥${Math.round(amount).toLocaleString()}`;
+        }
+
         async function fetchSignals() {
             try {
-                // To avoid cache in development/testing, add timestamp
                 const response = await fetch(`signals.json?t=${new Date().getTime()}`);
                 if (!response.ok) throw new Error('Data not found');
                 const data = await response.json();
                 
-                document.getElementById('date-info').innerText = `対象日: ${data.target_jp_trade_date} (基準: ${data.latest_us_close_date})`;
+                document.getElementById('date-info').innerText = `対象日: ${data.target_jp_trade_date} (米国基準: ${data.latest_us_close_date})`;
                 
+                // --- KPIs and Charts ---
+                if (data.history && data.history.length > 0) {
+                    const lastDay = data.history[data.history.length - 1];
+                    const dailyKpi = document.getElementById('kpi-daily');
+                    const cumKpi = document.getElementById('kpi-cumulative');
+                    
+                    dailyKpi.innerText = formatCurrency(lastDay.daily_profit);
+                    dailyKpi.className = lastDay.daily_profit >= 0 ? 'text-xl font-bold font-mono text-emerald-400' : 'text-xl font-bold font-mono text-red-400';
+                    
+                    cumKpi.innerText = formatCurrency(lastDay.cumulative_profit);
+                    cumKpi.className = lastDay.cumulative_profit >= 0 ? 'text-xl font-bold font-mono text-emerald-400' : 'text-xl font-bold font-mono text-red-400';
+
+                    // Yesterday Breakdown
+                    const breakdownList = document.getElementById('breakdown-list');
+                    lastDay.details.forEach(item => {
+                        const isProfitable = item.profit >= 0;
+                        const profitClass = isProfitable ? 'text-emerald-400' : 'text-red-400';
+                        const typeBadge = item.type === 'long' 
+                            ? '<span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-1.5 py-0.5 rounded">LONG</span>'
+                            : '<span class="bg-red-900/50 text-red-400 text-[10px] px-1.5 py-0.5 rounded">SHORT</span>';
+                            
+                        breakdownList.innerHTML += `
+                            <div class="glass-panel rounded pl-3 pr-3 py-2 flex justify-between items-center text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-12 text-xs text-gray-500">${item.ticker.split('.')[0]}</div>
+                                    <div class="font-medium text-gray-200">${item.name}</div>
+                                    ${typeBadge}
+                                </div>
+                                <div class="font-mono ${profitClass}">${formatCurrency(item.profit)}</div>
+                            </div>
+                        `;
+                    });
+
+                    // Chart Setup
+                    const ctx = document.getElementById('profitChart').getContext('2d');
+                    const labels = data.history.map(h => h.date.substring(5)); // 'MM-DD'
+                    const chartData = data.history.map(h => h.cumulative_profit);
+                    
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '累計利益 (￥)',
+                                data: chartData,
+                                borderColor: '#3b82f6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#60a5fa',
+                                pointBorderColor: '#1e3a8a',
+                                pointRadius: 4,
+                                fill: true,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9ca3af' } },
+                                y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9ca3af' } }
+                            }
+                        }
+                    });
+                }
+
+                // --- Next Signals ---
                 const longList = document.getElementById('long-list');
                 const shortList = document.getElementById('short-list');
                 
-                // Render Longs
                 data.long_etfs.forEach(item => {
                     longList.innerHTML += `
-                        <div class="glass-panel signal-long rounded-lg p-3 flex justify-between items-center bg-gray-800/80">
+                        <div class="glass-panel signal-long rounded-lg p-3 flex justify-between items-center">
                             <div>
                                 <div class="font-bold text-gray-100">${item.name}</div>
                                 <div class="text-xs text-gray-400">${item.ticker}</div>
@@ -84,10 +192,9 @@
                     `;
                 });
 
-                // Render Shorts
                 data.short_etfs.forEach(item => {
                     shortList.innerHTML += `
-                        <div class="glass-panel signal-short rounded-lg p-3 flex justify-between items-center bg-gray-800/80">
+                        <div class="glass-panel signal-short rounded-lg p-3 flex justify-between items-center">
                             <div>
                                 <div class="font-bold text-gray-100">${item.name}</div>
                                 <div class="text-xs text-gray-400">${item.ticker}</div>
@@ -102,11 +209,12 @@
 
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('content').classList.remove('hidden');
+                document.getElementById('back-link').classList.remove('hidden');
                 
             } catch (err) {
                 document.getElementById('loading').innerHTML = `
                     <p class="text-red-400">データの読み込みに失敗しました。</p>
-                    <p class="text-sm text-gray-500 mt-2">※まだsignals.jsonが生成されていない可能性があります</p>
+                    <p class="text-sm text-gray-500 mt-2">※まだsignals.jsonが生成されていないか、エラーが発生しています。</p>
                 `;
                 console.error(err);
             }
