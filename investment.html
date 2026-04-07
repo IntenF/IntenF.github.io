@@ -23,7 +23,10 @@
         <header class="text-center">
             <h1 class="text-2xl font-bold text-white mb-1">Lead-Lag Dashboard</h1>
             <p class="text-sm text-gray-400">PCA SUB (λ=0.9) 戦略</p>
-            <div id="date-info" class="text-xs text-gray-500 mt-2">Loading...</div>
+            <div id="date-info" class="text-xs text-gray-500 mt-3 leading-relaxed">Loading...</div>
+            <div id="market-warning" class="hidden mt-3 bg-yellow-900/40 border border-yellow-700/50 text-yellow-500 text-[10px] p-2 rounded text-left">
+                ⚠️ 発行時、米国市場が取引時間中でした。不完全なデータによるシグナルの歪みを防ぐため、直近の「確定済み」の終値を基準に算出しています。
+            </div>
         </header>
 
         <div id="loading" class="text-center py-10">
@@ -102,7 +105,14 @@
                 if (!response.ok) throw new Error('Data not found');
                 const data = await response.json();
                 
-                document.getElementById('date-info').innerText = `対象日: ${data.target_jp_trade_date} (米国基準: ${data.latest_us_close_date})`;
+                document.getElementById('date-info').innerHTML = `
+                    <strong class="text-gray-300">次回取引対象: ${data.target_jp_trade_date} 09:00 (JST)</strong><br>
+                    <span class="opacity-70">米国基準日: ${data.latest_us_close_date} 終値</span>
+                `;
+
+                if (data.is_market_open) {
+                    document.getElementById('market-warning').classList.remove('hidden');
+                }
                 
                 // --- KPIs and Charts ---
                 if (data.history && data.history.length > 0) {

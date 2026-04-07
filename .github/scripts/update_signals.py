@@ -4,6 +4,8 @@ import numpy as np
 import json
 import os
 from datetime import datetime
+import pytz
+from pandas.tseries.offsets import BDay
 
 US_TICKERS = ["XLB", "XLC", "XLE", "XLF", "XLI", "XLK", "XLP", "XLRE", "XLU", "XLV", "XLY"]
 JP_TICKERS = [f"16{i}.T" for i in range(17, 34)] # 1617 to 1633
@@ -100,6 +102,22 @@ def main():
     us_close = us_data['Close'].dropna(how='all')
     jp_close = jp_data['Close'].dropna(how='all')
     
+    # Check if US market is currently open. If so, drop the incomplete latest record
+    ny_tz = pytz.timezone('America/New_York')
+    now_ny = datetime.now(ny_tz)
+    # Market hours are 9:30 to 16:00. If we are running before 16:30 (buffer), we should drop the current day.
+    if now_ny.weekday() < 5 and now_ny.hour < 16:
+        today_ny_str = now_ny.strftime('%Y-%m-%d')
+        # Check if index exists as a string or timestamp
+        # In YF the index is localized or naïve datetime.
+        try:
+            today_ny_dt = pd.to_datetime(today_ny_str)
+            if today_ny_dt in us_close.index:
+                print(f"US market is still OPEN for {today_ny_str}. Dropping incomplete daily data to preserve closing prices.")
+                us_close = us_close.drop(today_ny_dt)
+        except Exception as e:
+            print(f"Error checking daily drop: {e}")
+            
     common_dates = sorted(us_close.index.intersection(jp_close.index))
     us_close = us_close.loc[common_dates].ffill()
     jp_close = jp_close.loc[common_dates].ffill()
@@ -168,7 +186,6 @@ def main():
             
         cumulative_profit += daily_profit
         
-        # Sort details by profit descending for nice display
         details = sorted(details, key=lambda x: x["profit"], reverse=True)
         
         history.append({
@@ -182,6 +199,10 @@ def main():
     t = len(rc_all) - 1
     t_date = rc_all.index[t]
     
+    # Next Business Day for the target signal
+    target_jp_trade_datetime = pd.to_datetime(t_date) + BDay(1)
+    target_jp_trade_str = target_jp_trade_datetime.strftime("%Y-%m-%d")
+
     long_idx_next, short_idx_next, sig_series_next = get_signal_for_t(rc_all, c_0, t, lreg, L)
     
     longs = []
@@ -204,11 +225,11 @@ def main():
     longs = sorted(longs, key=lambda x: x['score'], reverse=True)
     shorts = sorted(shorts, key=lambda x: x['score'])
     
-    # Structure final JSON
     output_data = {
         "calculated_at": datetime.now().isoformat(),
         "latest_us_close_date": t_date.strftime("%Y-%m-%d"),
-        "target_jp_trade_date": "Next JP Trading Day",
+        "target_jp_trade_date": target_jp_trade_str,
+        "is_market_open": bool(now_ny.weekday() < 5 and now_ny.hour < 16),
         "long_etfs": longs,
         "short_etfs": shorts,
         "history": history
