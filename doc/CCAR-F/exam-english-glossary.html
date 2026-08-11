@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Claude認定アーキテクト 試験英語 用例集</title>
+<style>
+:root{
+  --base: 6.5pt;          /* 用紙に入りきらない場合はここを 6.0〜7.2pt で調整 */
+  --ink:#16181d;
+  --sub:#5b616e;
+  --indigo:#22376f;
+  --azure:#4173ad;
+  --coral:#a3311d;
+  --rule:#cfd4dd;
+  --tint:#eef1f7;
+  --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+  --en:"Charter","Georgia","Times New Roman",serif;
+  --mono:"SF Mono","Menlo","Consolas","Roboto Mono","Courier New",monospace;
+}
+@page{ size:A4 portrait; margin:7mm; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e6e8ec}
+body{
+  font-family:var(--jp); font-size:var(--base); line-height:1.33; color:var(--ink);
+  font-feature-settings:"palt" 1;
+}
+.sheet{width:210mm;min-height:297mm;padding:7mm;margin:12px auto;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+
+.plate{display:flex;align-items:flex-end;gap:4mm;border-bottom:1.6pt solid var(--ink);padding-bottom:1.6mm;margin-bottom:2mm}
+.plate h1{font-size:13pt;line-height:1;letter-spacing:.01em;font-weight:800}
+.plate h1 span{display:block;font-family:var(--mono);font-size:6pt;font-weight:500;letter-spacing:.15em;color:var(--azure);margin-bottom:1mm}
+.facts{margin-left:auto;text-align:right;font-size:5.8pt;color:var(--sub);line-height:1.5}
+.facts b{color:var(--indigo);font-family:var(--mono);font-size:7pt}
+
+/* 設問の解剖リボン */
+.ribbon{display:flex;height:6.4mm;margin-bottom:2.2mm;border:.5pt solid var(--ink)}
+.ribbon div{display:flex;flex-direction:column;justify-content:center;padding:0 1.4mm;color:#fff;border-right:.5pt solid #fff;overflow:hidden}
+.ribbon div:last-child{border-right:0}
+.ribbon b{font-family:var(--mono);font-size:5.4pt;letter-spacing:.06em;font-weight:700}
+.ribbon em{font-style:normal;font-size:5.2pt;opacity:.94;white-space:nowrap}
+.r1{flex:40;background:#22376f}.r2{flex:13;background:#4173ad}
+.r3{flex:32;background:#7a5aa0}.r4{flex:15;background:#2f6b62}
+
+.cols{column-count:3;column-gap:4mm}
+section{break-inside:avoid;margin-bottom:2.4mm;padding-bottom:1.6mm;border-bottom:.5pt dotted var(--rule)}
+section:last-child{border-bottom:0}
+h2{font-size:7.2pt;font-weight:800;display:flex;align-items:center;gap:1.2mm;margin-bottom:1mm}
+h2 .tag{font-family:var(--mono);font-size:4.8pt;font-weight:700;color:#fff;background:var(--ink);padding:.3mm 1mm;border-radius:.6mm;letter-spacing:.04em}
+.t1{background:#22376f}.t2{background:#4173ad}.t3{background:#2f6b62}.t4{background:#7a5aa0}.t5{background:#a3311d}
+
+table{width:100%;border-collapse:collapse}
+td{border-bottom:.4pt solid var(--rule);padding:.55mm .6mm;vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{width:37%;font-family:var(--en);font-weight:700;color:var(--indigo);line-height:1.22;padding-right:1.2mm}
+td.j{font-family:var(--jp)}
+.g{color:var(--sub)}
+code{font-family:var(--mono);font-size:.92em;background:var(--tint);padding:0 .4mm;border-radius:.4mm;color:var(--indigo)}
+ul{list-style:none}
+li{padding-left:2.4mm;position:relative;margin-bottom:.4mm}
+li::before{content:"";position:absolute;left:0;top:.62em;width:1.2mm;height:.35mm;background:var(--azure)}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4mm}
+.pair>div{padding:1mm 1.2mm;border-radius:.8mm}
+.pair .y{background:#eaf1ec;border-left:1.2pt solid #2f6b62}
+.pair .n{background:#f7ebe8;border-left:1.2pt solid var(--coral)}
+.pair h4{font-size:5.8pt;letter-spacing:.05em;margin-bottom:.6mm}
+.pair .y h4{color:#2f6b62}.pair .n h4{color:var(--coral)}
+.pair p{font-family:var(--en);font-weight:700;color:var(--ink);margin-top:.8mm;line-height:1.24}
+.pair span{font-family:var(--jp);font-weight:400;color:var(--sub);display:block}
+.trap{border:1pt solid var(--coral);padding:1.4mm;background:#fdf7f5}
+.trap h2{color:var(--coral)}
+.note{font-size:5.8pt;color:var(--sub);margin-top:.8mm;line-height:1.35}
+
+.bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:#fff;padding:5px 12px;display:flex;align-items:center;gap:12px;font-size:11px;z-index:9}
+.bar input{width:120px}
+.bar button{font:inherit;background:#fff;color:var(--ink);border:0;padding:3px 10px;border-radius:3px;cursor:pointer}
+body{padding-top:30px}
+@media print{html,body{background:#fff;padding:0}.bar{display:none}.sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span>文字サイズ</span>
+  <input type="range" id="sz" min="5.6" max="7.4" step="0.1" value="6.5">
+  <span id="szv">6.5pt</span>
+  <button onclick="print()">印刷 / PDF保存</button>
+  <span style="opacity:.6">1枚に収まらないときはスライダーを左へ</span>
+</div>
+
+<div class="sheet">
+
+  <div class="plate">
+    <h1><span>EXAM ENGLISH — PHRASES, TERMS, AND HOW THEY ARE USED</span>試験英語 用例集</h1>
+    <div class="facts">読むのは<b>3か所</b>だけ<br>数値 / but・however / 設問文</div>
+  </div>
+
+  <div class="ribbon">
+    <div class="r1"><b>SITUATION</b><em>症状と数値。but・however の後が争点</em></div>
+    <div class="r2"><b>STEM</b><em>何を問うか</em></div>
+    <div class="r3"><b>OPTIONS</b><em>限定語（only / rather than）で削る</em></div>
+    <div class="r4"><b>WHY</b><em>解説の型</em></div>
+  </div>
+
+  <div class="cols">
+
+    <section class="trap">
+      <h2>選択肢の匂いで判定する</h2>
+      <div class="pair">
+        <div class="y"><h4>正解に多い言い回し</h4>
+          <p>directly addresses the root cause<span>根本原因に直接対処する</span></p>
+          <p>makes it architecturally impossible<span>構造上できなくする（最強の正解語）</span></p>
+          <p>at the interface level / precondition<span>インターフェース側で／前提条件で縛る</span></p>
+          <p>deterministic guarantee<span>決定論的な保証</span></p>
+          <p>least privilege / limited-scope<span>最小権限、用途を絞った</span></p>
+          <p>explicit criteria<span>明示的な判定基準</span></p>
+          <p>distinguish A from B<span>AとBを区別して扱う</span></p>
+          <p>preserves X while Y<span>Xを保ったままYする（両立）</span></p>
+        </div>
+        <div class="n"><h4>誤答に多い言い回し</h4>
+          <p>rely on the model to …<span>モデルの遵守頼み</span></p>
+          <p>merely discouraged<span>禁止でなく「しないよう促す」だけ</span></p>
+          <p>train a separate classifier / fine-tune<span>別の分類器を訓練、追加学習</span></p>
+          <p>switch to a larger model / bigger context window<span>大きいモデルや広い文脈窓に替える</span></p>
+          <p>require developers to …<span>開発者に手間を強いる</span></p>
+          <p>silently skip / mark as successful<span>黙って飛ばす、成功扱いにする</span></p>
+          <p>hidden defaults / speculative<span>暗黙の既定値、投機的な先読み</span></p>
+          <p>post-processing filter<span>後処理で取り繕う</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">STEM</span>設問の定型文</h2>
+      <table>
+        <tr><td>Which approach is most effective?</td><td class="j">最も効果的なのはどれか。効果の大小は「根本原因への近さ」で決まる</td></tr>
+        <tr><td>What is the most effective first step? / What should you check first?</td><td class="j">最初の一手は。低コストで効く手（ツール説明の見直しなど）が正解</td></tr>
+        <tr><td>What is the most likely root cause?</td><td class="j">最も可能性の高い根本原因は。状況文に犯人が書いてある</td></tr>
+        <tr><td>Which … directly addresses the root cause?</td><td class="j">根本原因に直接対処するのは。対症療法は落とす</td></tr>
+        <tr><td>How should you evaluate this proposal?</td><td class="j">この提案をどう評価すべきか。「一部だけ採用」が正解になりやすい</td></tr>
+        <tr><td>What is the primary technical limitation?</td><td class="j">主な技術的制約は。「遅い」ではなく「仕組み上できない」を選ぶ</td></tr>
+        <tr><td>What determines this decision?</td><td class="j">何がこの判断を決めるか。仕様上の決定要因（<code>stop_reason</code>など）</td></tr>
+        <tr><td>What is the main advantage of …?</td><td class="j">主な利点は。速度やコストなど副次的な利点は誤答になりやすい</td></tr>
+        <tr><td>Which combination correctly matches …?</td><td class="j">正しい組み合わせは。項目ごとに判定してから消去する</td></tr>
+        <tr><td>Which fix … while maintaining / preserving …?</td><td class="j">〜を保ったまま直すのは。後半が制約条件。無視した選択肢は誤答</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t2">SIT</span>状況文の言い回し</h2>
+      <table>
+        <tr><td>Production logs show a consistent pattern</td><td class="j">本番ログに一貫した傾向が出ている。直後の数値が根拠</td></tr>
+        <tr><td>Developers report that …</td><td class="j">開発者からの報告では。主観的な不満が解くべき課題</td></tr>
+        <tr><td>accuracy drops to 58%</td><td class="j">58%まで落ちる。<span class="g">drop to は到達点、drop by は下げ幅</span></td></tr>
+        <tr><td>the job hangs indefinitely</td><td class="j">ジョブが延々と止まる。対話入力待ちの合図</td></tr>
+        <tr><td>bypass the preview step</td><td class="j">プレビュー手順を迂回する。決定論的な強制が要る合図</td></tr>
+        <tr><td>pollute the main session</td><td class="j">本流の文脈を汚す。隔離実行の合図</td></tr>
+        <tr><td>erode trust / dismiss without reading</td><td class="j">信頼を損なう／読まずに切り捨てる。偽陽性問題の合図</td></tr>
+        <tr><td>causing 35% abandonment</td><td class="j">35%の離脱を招いている。質問攻めによるUXの問題</td></tr>
+        <tr><td>results may be stale</td><td class="j">結果が古くなっている可能性がある</td></tr>
+        <tr><td>shifts burden to developers</td><td class="j">負担を開発者に転嫁する（誤答の説明で頻出）</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">V</span>意味を取り違えやすい動詞</h2>
+      <table>
+        <tr><td>flag</td><td class="j">問題として指摘する。<span class="g">the -p flag は名詞でCLIオプション</span></td></tr>
+        <tr><td>surface</td><td class="j">表面化させる。<span class="g">surface the contradiction＝矛盾を突きつける</span></td></tr>
+        <tr><td>escalate</td><td class="j">上位者や人間へ引き渡す。「激化する」ではない</td></tr>
+        <tr><td>spawn</td><td class="j">サブエージェントを起動する</td></tr>
+        <tr><td>shadow</td><td class="j">同名で覆い隠す。個人スキルがチーム版を隠す文脈</td></tr>
+        <tr><td>mask</td><td class="j">実態を覆い隠す。全体97%が特定タイプの誤りをmaskする</td></tr>
+        <tr><td>trim</td><td class="j">切り詰める。ツール結果を必要な項目だけにする</td></tr>
+        <tr><td>propagate</td><td class="j">伝播させる。error propagation＝エラーの伝え方</td></tr>
+        <tr><td>enforce</td><td class="j">（コードで）強制する。⇔ guidance は促すだけ</td></tr>
+        <tr><td>annotate</td><td class="j">注記を付ける。annotate the gap＝欠落を明記する</td></tr>
+        <tr><td>reconcile</td><td class="j">突き合わせて整合させる。矛盾データの処理</td></tr>
+        <tr><td>dismiss</td><td class="j">却下する、まともに取り合わない</td></tr>
+        <tr><td>defer</td><td class="j">先送りする（判断の先送りは誤答の型）</td></tr>
+        <tr><td>prefill / prepend</td><td class="j">冒頭を先に埋める／前に付ける</td></tr>
+        <tr><td>scaffold</td><td class="j">骨組みだけ先に作る</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">N</span>頻出の専門名詞</h2>
+      <table>
+        <tr><td>root cause / symptom</td><td class="j">根本原因／症状</td></tr>
+        <tr><td>least privilege</td><td class="j">最小権限</td></tr>
+        <tr><td>attention dilution</td><td class="j">注意の希薄化。多ファイル一括レビューの弊害</td></tr>
+        <tr><td>lost in the middle</td><td class="j">中間消失。長い入力の中ほどを見落とす</td></tr>
+        <tr><td>graceful degradation</td><td class="j">できる範囲で動かし続けること</td></tr>
+        <tr><td>provenance / attribution</td><td class="j">出所／出典の帰属</td></tr>
+        <tr><td>handoff</td><td class="j">引き継ぎ。人へ渡すときの構造化サマリ</td></tr>
+        <tr><td>finding</td><td class="j">指摘事項。「発見」より「指摘」で読む</td></tr>
+        <tr><td>rationale</td><td class="j">そう判断した根拠</td></tr>
+        <tr><td>false positive</td><td class="j">偽陽性。実際は問題ないのに指摘したもの</td></tr>
+        <tr><td>edge case</td><td class="j">例外的な入力や状況</td></tr>
+        <tr><td>boilerplate</td><td class="j">定型のひな型コード</td></tr>
+        <tr><td>overengineering</td><td class="j">過剰設計。誤答の定番の指摘語</td></tr>
+        <tr><td>workaround</td><td class="j">場当たりの回避策</td></tr>
+        <tr><td>single source of truth</td><td class="j">情報の出どころを一つに保つこと</td></tr>
+        <tr><td>coverage gap</td><td class="j">網羅の抜け</td></tr>
+        <tr><td>round trip / loop</td><td class="j">やり取りの往復回数</td></tr>
+        <tr><td>stratified random sampling</td><td class="j">層化無作為抽出。全体平均に隠れた誤りを見つける</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">PAIR</span>対で覚える語</h2>
+      <table>
+        <tr><td>synchronous ⇔ asynchronous</td><td class="j">同期／非同期</td></tr>
+        <tr><td>blocking ⇔ non-blocking</td><td class="j">人を待たせる／待たせない。バッチ可否の判断軸そのもの</td></tr>
+        <tr><td>deterministic ⇔ probabilistic</td><td class="j">決定論的／確率的。フックとプロンプトの差</td></tr>
+        <tr><td>transient ⇔ persistent</td><td class="j">一時的／恒久的。再試行して意味があるかどうか</td></tr>
+        <tr><td>required ⇔ optional ⇔ nullable</td><td class="j">必須／任意／null許容</td></tr>
+        <tr><td>upstream ⇔ downstream</td><td class="j">上流／下流のエージェント</td></tr>
+        <tr><td>take precedence over / override / shadow</td><td class="j">優先される／上書きする／隠してしまう</td></tr>
+        <tr><td>explicit ⇔ implicit</td><td class="j">明示的／暗黙的。暗黙は誤答寄り</td></tr>
+        <tr><td>fine-grained ⇔ coarse</td><td class="j">きめ細かい／粗い</td></tr>
+        <tr><td>verbose ⇔ concise</td><td class="j">冗長／簡潔</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">MOD</span>読み違えると逆になる語</h2>
+      <table>
+        <tr><td>rather than X</td><td class="j">Xではなく。<span class="g">Xは不採用側。前半が主張</span></td></tr>
+        <tr><td>instead of X</td><td class="j">Xの代わりに</td></tr>
+        <tr><td>only when / only if</td><td class="j">〜の場合に限り。基準を狭める文で頻出</td></tr>
+        <tr><td>regardless of</td><td class="j">〜に関わらず</td></tr>
+        <tr><td>even when / even if</td><td class="j">たとえ〜でも</td></tr>
+        <tr><td>unless</td><td class="j">〜でない限り</td></tr>
+        <tr><td>without adding …</td><td class="j">〜を増やさずに。制約条件。<span class="g">without human oversight＝人手を足さずに</span></td></tr>
+        <tr><td>at the expense of</td><td class="j">〜を犠牲にして</td></tr>
+        <tr><td>in favor of X</td><td class="j">Xを採用して（他をやめて）</td></tr>
+        <tr><td>up to 24 hours</td><td class="j">最大24時間。「24時間かかる」ではない</td></tr>
+        <tr><td>at least two</td><td class="j">2つ以上</td></tr>
+        <tr><td>no later than</td><td class="j">遅くとも〜までに</td></tr>
+        <tr><td>below / above the threshold</td><td class="j">閾値の未満／超</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">CLI</span>実務語と略語</h2>
+      <table>
+        <tr><td>non-interactive / headless</td><td class="j">対話なしで実行すること</td></tr>
+        <tr><td>stdout / stdin</td><td class="j">標準出力／標準入力</td></tr>
+        <tr><td>hook / intercept</td><td class="j">処理の途中に割り込むしくみ／割り込む</td></tr>
+        <tr><td>fire-and-forget</td><td class="j">投げっぱなし。結果を待たない方式</td></tr>
+        <tr><td>polling</td><td class="j">完了したか定期的に問い合わせること</td></tr>
+        <tr><td>fallback</td><td class="j">うまくいかないときの代替手段</td></tr>
+        <tr><td>co-located / scattered across</td><td class="j">同じ場所に置かれた／各所に散らばった</td></tr>
+        <tr><td>version control (VCS)</td><td class="j">バージョン管理。共有されるかどうかの判断軸</td></tr>
+        <tr><td>PR / CI/CD / SLA / TTL / CRUD</td><td class="j">プルリクエスト／継続的統合と配信／応答保証／有効期限／作成・読取・更新・削除</td></tr>
+        <tr><td>e.g. / i.e. / vs. / per</td><td class="j">例えば／すなわち／対／〜ごとに</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">TIP</span>時間がないときの読み方</h2>
+      <ul>
+        <li>状況文は<b>数値と but・however</b>だけ拾う。前半の説明は背景で、争点はほぼ逆接の後にある</li>
+        <li>設問文を先に読んでから状況文に戻ると、探す情報が絞れる</li>
+        <li>4択は<b>誤答の匂い</b>から消す。誰かに手間を押しつける案、モデルの善意頼みの案、後処理で隠す案は落ちる</li>
+        <li>2つに絞れたら、<b>制約条件を書いた部分</b>（while …, without …, but the team rejected …）に戻る。片方は必ずそこに違反している</li>
+        <li>未回答に減点はない。<b>迷ったら根本原因に一番近い選択肢</b>を選んで進む</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const sz=document.getElementById('sz'),v=document.getElementById('szv');
+sz.addEventListener('input',()=>{document.documentElement.style.setProperty('--base',sz.value+'pt');v.textContent=sz.value+'pt';});
+</script>
+</body>
+</html>

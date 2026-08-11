@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>試験英語 語源・接辞デコーダ</title>
+<style>
+:root{
+  --base: 6.5pt;          /* 用紙に入りきらない場合はここを 6.0〜7.2pt で調整 */
+  --ink:#16181d;
+  --sub:#5b616e;
+  --indigo:#22376f;
+  --azure:#4173ad;
+  --coral:#a3311d;
+  --rule:#cfd4dd;
+  --tint:#eef1f7;
+  --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+  --en:"Charter","Georgia","Times New Roman",serif;
+  --mono:"SF Mono","Menlo","Consolas","Roboto Mono","Courier New",monospace;
+}
+@page{ size:A4 portrait; margin:7mm; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e6e8ec}
+body{font-family:var(--jp);font-size:var(--base);line-height:1.33;color:var(--ink);font-feature-settings:"palt" 1}
+.sheet{width:210mm;min-height:297mm;padding:7mm;margin:12px auto;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+
+.plate{display:flex;align-items:flex-end;gap:4mm;border-bottom:1.6pt solid var(--ink);padding-bottom:1.6mm;margin-bottom:2mm}
+.plate h1{font-size:13pt;line-height:1;letter-spacing:.01em;font-weight:800}
+.plate h1 span{display:block;font-family:var(--mono);font-size:6pt;font-weight:500;letter-spacing:.15em;color:var(--azure);margin-bottom:1mm}
+.facts{margin-left:auto;text-align:right;font-size:5.8pt;color:var(--sub);line-height:1.5}
+.facts b{color:var(--indigo);font-family:var(--mono);font-size:7pt}
+
+/* 分解の実演リボン */
+.ribbon{display:flex;height:7.4mm;margin-bottom:2.2mm;border:.5pt solid var(--ink)}
+.ribbon div{display:flex;flex-direction:column;justify-content:center;padding:0 1.6mm;color:#fff;border-right:.5pt solid #fff;overflow:hidden;white-space:nowrap}
+.ribbon div:last-child{border-right:0}
+.ribbon b{font-family:var(--en);font-size:7.4pt;letter-spacing:.02em;line-height:1.1}
+.ribbon em{font-style:normal;font-size:5.2pt;opacity:.94}
+.r1{flex:20;background:#a3311d}.r2{flex:26;background:#22376f}
+.r3{flex:22;background:#4173ad}.r4{flex:32;background:#2f6b62}
+
+.cols{column-count:3;column-gap:4mm}
+section{break-inside:avoid;margin-bottom:2.4mm;padding-bottom:1.6mm;border-bottom:.5pt dotted var(--rule)}
+section:last-child{border-bottom:0}
+h2{font-size:7.2pt;font-weight:800;display:flex;align-items:center;gap:1.2mm;margin-bottom:1mm}
+h2 .tag{font-family:var(--mono);font-size:4.8pt;font-weight:700;color:#fff;background:var(--ink);padding:.3mm 1mm;border-radius:.6mm;letter-spacing:.04em}
+.t1{background:#22376f}.t2{background:#4173ad}.t3{background:#2f6b62}.t4{background:#7a5aa0}.t5{background:#a3311d}
+
+table{width:100%;border-collapse:collapse}
+td{border-bottom:.4pt solid var(--rule);padding:.55mm .6mm;vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{width:30%;font-family:var(--en);font-weight:700;color:var(--indigo);line-height:1.22;padding-right:1.2mm}
+td.j{font-family:var(--jp)}
+table.rev td:first-child{font-family:var(--jp);color:var(--ink);width:26%}
+table.rev td:last-child{font-family:var(--en);color:var(--indigo);font-weight:600}
+table.wide td:first-child{width:42%}
+.g{color:var(--sub);font-family:var(--jp);font-weight:400}
+code{font-family:var(--mono);font-size:.92em;background:var(--tint);padding:0 .4mm;border-radius:.4mm;color:var(--indigo)}
+ul{list-style:none}
+li{padding-left:2.4mm;position:relative;margin-bottom:.4mm}
+li::before{content:"";position:absolute;left:0;top:.62em;width:1.2mm;height:.35mm;background:var(--azure)}
+
+.key{border:1pt solid var(--indigo);padding:1.4mm;background:#f4f7fc}
+.key h2{color:var(--indigo)}
+.trap{border:1pt solid var(--coral);padding:1.4mm;background:#fdf7f5}
+.trap h2{color:var(--coral)}
+.note{font-size:5.8pt;color:var(--sub);margin-top:.8mm;line-height:1.35}
+
+.bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:#fff;padding:5px 12px;display:flex;align-items:center;gap:12px;font-size:11px;z-index:9}
+.bar input{width:120px}
+.bar button{font:inherit;background:#fff;color:var(--ink);border:0;padding:3px 10px;border-radius:3px;cursor:pointer}
+body{padding-top:30px}
+@media print{html,body{background:#fff;padding:0}.bar{display:none}.sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span>文字サイズ</span>
+  <input type="range" id="sz" min="5.6" max="7.4" step="0.1" value="6.5">
+  <span id="szv">6.5pt</span>
+  <button onclick="print()">印刷 / PDF保存</button>
+  <span style="opacity:.6">1枚に収まらないときはスライダーを左へ</span>
+</div>
+
+<div class="sheet">
+
+  <div class="plate">
+    <h1><span>DECODING UNFAMILIAR WORDS — PREFIXES, ROOTS, SUFFIXES</span>語源・接辞デコーダ</h1>
+    <div class="facts">未知語は覚えるより<b>割る</b><br>接頭辞20個で大半は読める</div>
+  </div>
+
+  <div class="ribbon">
+    <div class="r1"><b>non-</b><em>否定</em></div>
+    <div class="r2"><b>determin</b><em>決める</em></div>
+    <div class="r3"><b>-istic</b><em>〜的な</em></div>
+    <div class="r4"><b>= non-deterministic</b><em>結果が決まらない性質の</em></div>
+  </div>
+
+  <div class="cols">
+
+    <section class="key">
+      <h2>homo / hetero とその仲間</h2>
+      <table>
+        <tr><td>homogeneous</td><td class="j">同質の、均質の。<span class="g">homo（同じ）+ gene（種）</span></td></tr>
+        <tr><td>heterogeneous</td><td class="j"><b>異質の、ばらばらの</b>。実務英語ではこちらが標準<br><span class="g">heterogeneous documents＝形式の異なる文書群</span></td></tr>
+        <tr><td>inhomogeneous</td><td class="j">同じく「不均質な」。数学や物理で使う語で、この試験では出にくい</td></tr>
+        <tr><td>uniform / uniformly</td><td class="j">一様な、どれも同じ扱いで。<span class="g">handle errors uniformly</span></td></tr>
+        <tr><td>consistent / inconsistent</td><td class="j">一貫した／ばらついた。品質のブレを指す定番語</td></tr>
+        <tr><td>disparate / diverse</td><td class="j">互いに異なる／多様な</td></tr>
+        <tr><td>mixed-quality</td><td class="j">品質にばらつきのある。上流の出来が揃わない状況で出る</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">PRE</span>接頭辞：否定と過不足</h2>
+      <table class="wide">
+        <tr><td>non- 〜でない</td><td class="j">non-interactive, non-blocking, non-recoverable</td></tr>
+        <tr><td>un- / in- / im- 〜でない</td><td class="j">unambiguous（曖昧でない）, incomplete, implicit（暗黙の）</td></tr>
+        <tr><td>dis- 離す・逆</td><td class="j">discrepancy（食い違い）, disputed（争いのある）, distributed</td></tr>
+        <tr><td>mis- 誤って〜する</td><td class="j">misroute, misidentify, misinterpret, misuse<br><span class="g">この4語は全部「誤って〜する」。分解できれば辞書不要</span></td></tr>
+        <tr><td>over- 過剰・上から</td><td class="j">overengineering（過剰設計）, overhead, overlap, override, oversight（監督）</td></tr>
+        <tr><td>under- 下・不足</td><td class="j">underlying（根底にある）, undermine（じわじわ損なう）</td></tr>
+        <tr><td>a- / an- 〜なし</td><td class="j">asynchronous（非同期）, atomic（分割不可の）</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">PRE</span>接頭辞：位置と時間</h2>
+      <table class="wide">
+        <tr><td>pre- 前</td><td class="j">precondition（前提条件）, preprocessing, prepend, PreToolUse</td></tr>
+        <tr><td>post- 後</td><td class="j">post-processing, PostToolUse</td></tr>
+        <tr><td>sub- 下・従属</td><td class="j">subagent, subtask, subsequent（それ以降の）</td></tr>
+        <tr><td>inter- 間</td><td class="j">intercept（割り込む）, interface, intermediate（中間の）</td></tr>
+        <tr><td>trans- 越えて・移る</td><td class="j">transient（一時的な）, transaction, transform</td></tr>
+        <tr><td>ex- 外へ</td><td class="j">explicit（外に出す＝明示的）, extract, exceed, exhaustive（網羅的）</td></tr>
+        <tr><td>de- 下げる・外す</td><td class="j">degradation（劣化）, deduplicate, decompose（分解する）, delegate（委譲する）</td></tr>
+        <tr><td>re- 再び・戻す</td><td class="j">retry, resume, reconcile（突き合わせる）, redundant（重複した）</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t2">PRE</span>接頭辞：数と関係</h2>
+      <table class="wide">
+        <tr><td>mono- 1つ</td><td class="j">monolithic（一枚岩の）, monolith</td></tr>
+        <tr><td>uni- 1つ</td><td class="j">unified（統合された）, unidirectional（一方向の）</td></tr>
+        <tr><td>bi- 2つ</td><td class="j">bidirectional（双方向の）, binary</td></tr>
+        <tr><td>multi- 多い</td><td class="j">multi-agent, multi-pass, multi-turn</td></tr>
+        <tr><td>iso- 分離・等しい</td><td class="j">isolated, isolation（隔離）</td></tr>
+        <tr><td>syn- / sym- 一緒に</td><td class="j">synchronous（同期の）, synthesis（統合）, symmetric</td></tr>
+        <tr><td>con- / co- 共に</td><td class="j">concurrent（同時並行の）, coherent（筋の通った）, co-located, contradictory（矛盾する）</td></tr>
+        <tr><td>intra- 内側</td><td class="j">intra-（〜内の）。<span class="g">inter-（間）と1字違いなので注意</span></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">SUF</span>接尾辞</h2>
+      <table class="wide">
+        <tr><td>-able 〜できる</td><td class="j">retryable（再試行可）, actionable（実行に移せる）, maintainable, observable, traceable</td></tr>
+        <tr><td>-less 〜がない</td><td class="j">stateless（状態を持たない）, seamless</td></tr>
+        <tr><td>-ity / -ness 性質</td><td class="j">granularity（粒度）, reliability, observability, verbosity（冗長さ）</td></tr>
+        <tr><td>-ion 行為や結果</td><td class="j">escalation, delegation, attribution（帰属）, degradation</td></tr>
+        <tr><td>-istic / -ic 〜的な</td><td class="j">deterministic, probabilistic, heuristic（経験則の）</td></tr>
+        <tr><td>-wise 〜の単位で</td><td class="j">field-wise, per-file（ファイル単位で）</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">ADJ</span>硬い形容詞・副詞</h2>
+      <table>
+        <tr><td>arbitrary / arbitrarily</td><td class="j">恣意的な、根拠なく選ぶ。<span class="g">誤答の説明で頻出。「勝手に片方を選ぶな」</span></td></tr>
+        <tr><td>inherent / inherently</td><td class="j">本質的に、そもそも。<span class="g">要約はinherentlyに詳細を失う</span></td></tr>
+        <tr><td>plausible / viable</td><td class="j">もっともらしい／実行可能な。複数案が並ぶ状況の合図</td></tr>
+        <tr><td>proportional / disproportionately</td><td class="j">見合った／不釣り合いに</td></tr>
+        <tr><td>materially</td><td class="j">実質的に、結論を左右するほどに</td></tr>
+        <tr><td>inadvertently / accidentally</td><td class="j">うっかり、意図せず</td></tr>
+        <tr><td>nuanced</td><td class="j">細かい機微のある。段階的な対応を指す</td></tr>
+        <tr><td>fundamentally incompatible</td><td class="j">仕組みとして両立しない</td></tr>
+        <tr><td>semantic / syntactic</td><td class="j">意味の／構文の。スキーマの話で必ず対で出る</td></tr>
+        <tr><td>temporal</td><td class="j">時間に関する。<span class="g">temporal difference＝時期のずれ</span></td></tr>
+        <tr><td>granular</td><td class="j">きめ細かい</td></tr>
+        <tr><td>brittle / fragile</td><td class="j">壊れやすい。脆い回避策を批判する語</td></tr>
+        <tr><td>idiomatic</td><td class="j">定石どおりの。<span class="g">正解側の褒め言葉</span></td></tr>
+      </table>
+    </section>
+
+    <section class="trap">
+      <h2>同じ意味を別の語で言い換えてくる</h2>
+      <p class="note" style="margin:0 0 1mm">選択肢は同じ概念を違う単語で書く。日本語の概念から英語の束で引けるようにしておく。</p>
+      <table class="rev">
+        <tr><td>減らす・和らげる</td><td>reduce / mitigate / alleviate / curb</td></tr>
+        <tr><td>保証する</td><td>ensure / guarantee / enforce</td></tr>
+        <tr><td>防ぐ</td><td>prevent / preclude / eliminate the possibility</td></tr>
+        <tr><td>区別する</td><td>distinguish / differentiate / disambiguate</td></tr>
+        <tr><td>まとめる</td><td>combine / consolidate / merge / aggregate</td></tr>
+        <tr><td>分ける</td><td>split / partition / decompose / segment</td></tr>
+        <tr><td>間違った</td><td>incorrect / erroneous / flawed / misleading</td></tr>
+        <tr><td>隠す</td><td>hide / mask / obscure / conceal</td></tr>
+        <tr><td>従う</td><td>follow / adhere to / comply with</td></tr>
+        <tr><td>引き起こす</td><td>cause / trigger / lead to / result in</td></tr>
+        <tr><td>取り除く</td><td>remove / strip / discard / prune</td></tr>
+        <tr><td>切り替える</td><td>switch to / fall back to / route to</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">LAT</span>ラテン由来の定型</h2>
+      <table>
+        <tr><td>ad hoc</td><td class="j">その場しのぎの、場当たりの。<span class="g">ad hoc web search＝行き当たりばったりの検索</span></td></tr>
+        <tr><td>verbatim</td><td class="j">一字一句そのまま。<span class="g">keep recent exchanges verbatim</span></td></tr>
+        <tr><td>per</td><td class="j">〜ごとに。per file, per request</td></tr>
+        <tr><td>via</td><td class="j">〜経由で、〜を使って</td></tr>
+        <tr><td>vice versa</td><td class="j">逆もまた同じ</td></tr>
+        <tr><td>criteria / criterion</td><td class="j">基準（複数形／単数形）。criteria が複数なのに注意</td></tr>
+        <tr><td>analyses</td><td class="j">analysis の複数形。発音も綴りも変わる</td></tr>
+        <tr><td>e.g. / i.e.</td><td class="j">例えば／すなわち。<span class="g">i.e. は言い換えなので直前と同じ内容</span></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">TIP</span>本番で未知語に当たったら</h2>
+      <ul>
+        <li>まず<b>接頭辞で符号だけ取る</b>。non / un / in / mis が付いていれば否定、over は過剰、under は不足。それだけで選択肢の向きは判定できる</li>
+        <li>語の意味が取れなくても、<b>その語が正解の根拠になることは少ない</b>。判断は動詞と限定語（only, rather than, without）で決まる</li>
+        <li>選択肢に1つだけ難しい語が入っているときは、その語を消して読む。残りの文で正誤が判定できるよう作られている</li>
+        <li>状況文の未知語は飛ばす。設問文と選択肢の未知語だけ立ち止まる</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const sz=document.getElementById('sz'),v=document.getElementById('szv');
+sz.addEventListener('input',()=>{document.documentElement.style.setProperty('--base',sz.value+'pt');v.textContent=sz.value+'pt';});
+</script>
+</body>
+</html>

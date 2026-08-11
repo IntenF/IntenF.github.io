@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>試験英語 誤読注意 単語帳</title>
+<style>
+:root{
+  --base: 6.3pt;          /* 用紙に入りきらない場合はここを 5.8〜7.0pt で調整 */
+  --ink:#16181d;
+  --sub:#5b616e;
+  --indigo:#22376f;
+  --azure:#4173ad;
+  --coral:#a3311d;
+  --green:#2f6b62;
+  --rule:#cfd4dd;
+  --tint:#eef1f7;
+  --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+  --en:"Charter","Georgia","Times New Roman",serif;
+  --mono:"SF Mono","Menlo","Consolas","Roboto Mono","Courier New",monospace;
+}
+@page{ size:A4 portrait; margin:7mm; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e6e8ec}
+body{font-family:var(--jp);font-size:var(--base);line-height:1.32;color:var(--ink);font-feature-settings:"palt" 1}
+.sheet{width:210mm;min-height:297mm;padding:7mm;margin:12px auto;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+
+.plate{display:flex;align-items:flex-end;gap:4mm;border-bottom:1.6pt solid var(--ink);padding-bottom:1.6mm;margin-bottom:2mm}
+.plate h1{font-size:13pt;line-height:1;letter-spacing:.01em;font-weight:800}
+.plate h1 span{display:block;font-family:var(--mono);font-size:6pt;font-weight:500;letter-spacing:.15em;color:var(--azure);margin-bottom:1mm}
+.facts{margin-left:auto;text-align:right;font-size:5.8pt;color:var(--sub);line-height:1.5}
+.facts b{color:var(--indigo);font-family:var(--mono);font-size:7pt}
+
+/* 誤読の型リボン */
+.ribbon{display:flex;height:7.2mm;margin-bottom:2.2mm;border:.5pt solid var(--ink)}
+.ribbon div{display:flex;flex-direction:column;justify-content:center;padding:0 1.6mm;color:#fff;border-right:.5pt solid #fff;overflow:hidden;white-space:nowrap}
+.ribbon div:last-child{border-right:0}
+.ribbon b{font-family:var(--en);font-size:7.2pt;line-height:1.1}
+.ribbon em{font-style:normal;font-size:5.2pt;opacity:.94}
+.r1{flex:22;background:#22376f}.r2{flex:26;background:#a3311d}
+.r3{flex:26;background:#2f6b62}.r4{flex:26;background:#4173ad}
+
+.cols{column-count:3;column-gap:4mm}
+section{break-inside:avoid;margin-bottom:2.4mm;padding-bottom:1.6mm;border-bottom:.5pt dotted var(--rule)}
+section:last-child{border-bottom:0}
+h2{font-size:7.2pt;font-weight:800;display:flex;align-items:center;gap:1.2mm;margin-bottom:1mm}
+h2 .tag{font-family:var(--mono);font-size:4.8pt;font-weight:700;color:#fff;background:var(--ink);padding:.3mm 1mm;border-radius:.6mm;letter-spacing:.04em}
+.t1{background:#22376f}.t2{background:#4173ad}.t3{background:#2f6b62}.t4{background:#7a5aa0}.t5{background:#a3311d}
+
+table{width:100%;border-collapse:collapse}
+td{border-bottom:.4pt solid var(--rule);padding:.6mm .5mm;vertical-align:top}
+tr:last-child td{border-bottom:0}
+.w{width:27%;font-family:var(--en);font-weight:700;color:var(--indigo);line-height:1.2;padding-right:1mm}
+.x{width:20%;color:var(--coral);padding-right:1mm;line-height:1.2}
+.x::before{content:"×";font-family:var(--mono);font-weight:700;margin-right:.6mm}
+.o{line-height:1.24}
+.o b{color:var(--green)}
+.g{color:var(--sub)}
+code{font-family:var(--mono);font-size:.92em;background:var(--tint);padding:0 .4mm;border-radius:.4mm;color:var(--indigo)}
+ul{list-style:none}
+li{padding-left:2.4mm;position:relative;margin-bottom:.4mm}
+li::before{content:"";position:absolute;left:0;top:.62em;width:1.2mm;height:.35mm;background:var(--azure)}
+
+.hi{border:1pt solid var(--coral);padding:1.4mm;background:#fdf7f5}
+.hi h2{color:var(--coral)}
+.note{font-size:5.8pt;color:var(--sub);line-height:1.35;margin:0 0 1mm}
+
+.bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:#fff;padding:5px 12px;display:flex;align-items:center;gap:12px;font-size:11px;z-index:9}
+.bar input{width:120px}
+.bar button{font:inherit;background:#fff;color:var(--ink);border:0;padding:3px 10px;border-radius:3px;cursor:pointer}
+body{padding-top:30px}
+@media print{html,body{background:#fff;padding:0}.bar{display:none}.sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span>文字サイズ</span>
+  <input type="range" id="sz" min="5.6" max="7.2" step="0.1" value="6.3">
+  <span id="szv">6.3pt</span>
+  <button onclick="print()">印刷 / PDF保存</button>
+  <span style="opacity:.6">1枚に収まらないときはスライダーを左へ</span>
+</div>
+
+<div class="sheet">
+
+  <div class="plate">
+    <h1><span>WORDS THAT MISLEAD — KNOW THESE OR MISREAD THE QUESTION</span>誤読注意 単語帳</h1>
+    <div class="facts">危ないのは難語より<b>既知語</b><br>カタカナで覚えた語ほど外す</div>
+  </div>
+
+  <div class="ribbon">
+    <div class="r1"><b>address</b><em>設問の最重要語</em></div>
+    <div class="r2"><b>× 宛てる・住所</b><em>そう読むと文が壊れる</em></div>
+    <div class="r3"><b>○ 対処する</b><em>address the root cause</em></div>
+    <div class="r4"><b>この型を60語</b><em>知識ではなく上書きの作業</em></div>
+  </div>
+
+  <div class="cols">
+
+    <section class="hi">
+      <h2>誤読すると設問が反転する語</h2>
+      <table>
+        <tr><td class="w">address (v.)</td><td class="x">宛てる</td><td class="o"><b>対処する</b>。この試験で最も多い動詞。<code>addresses the root cause</code>＝根本原因に手を打つ</td></tr>
+        <tr><td class="w">oversight</td><td class="x">見落とし</td><td class="o"><b>人による監督</b>。<code>without adding human oversight</code>＝人手を増やさずに、という制約条件。逆に読むと真逆</td></tr>
+        <tr><td class="w">conservative</td><td class="x">保守的</td><td class="o"><b>控えめに、少なめに</b>。<code>be conservative</code>＝確実なものだけ報告せよ</td></tr>
+        <tr><td class="w">claim</td><td class="x">クレーム・苦情</td><td class="o"><b>主張、言い分</b>。<code>the customer claims</code>＝顧客は〜と言っている。調査で扱う「主張」も同じ語</td></tr>
+        <tr><td class="w">resolution</td><td class="x">解像度</td><td class="o"><b>解決</b>。<code>first-contact resolution 55%</code>＝初回解決率。この試験の最重要指標</td></tr>
+        <tr><td class="w">order</td><td class="x">順序（だけ）</td><td class="o"><b>注文</b>。サポート文脈ではほぼ注文。<span class="g">順序の意味は tool ordering の形で出る</span></td></tr>
+        <tr><td class="w">exhaustive</td><td class="x">疲れる</td><td class="o"><b>網羅的な</b>。exhausting（疲れさせる）と別語</td></tr>
+        <tr><td class="w">comprehensive</td><td class="x">理解しやすい</td><td class="o"><b>包括的な</b>。comprehensible（理解できる）と別語</td></tr>
+        <tr><td class="w">redundant</td><td class="x">冗長化（良い意味）</td><td class="o"><b>重複していて無駄な</b>。<code>redundant feedback</code>＝同じ指摘の繰り返し。悪い意味</td></tr>
+        <tr><td class="w">subject to</td><td class="x">主題</td><td class="o"><b>〜に従う、〜に左右される</b>。<code>subject to placement rules</code></td></tr>
+        <tr><td class="w">proxy</td><td class="x">プロキシサーバ</td><td class="o"><b>代理の指標</b>。<code>unreliable proxies for complexity</code>＝複雑さの代わりにならない</td></tr>
+        <tr><td class="w">critical</td><td class="x">批判的</td><td class="o"><b>致命的、極めて重要</b>。深刻度の最上位</td></tr>
+        <tr><td class="w">sensitive</td><td class="x">機密の</td><td class="o"><b>反応してしまう</b>。<code>keyword-sensitive instructions</code>＝特定語に引きずられる指示</td></tr>
+        <tr><td class="w">primacy (effect)</td><td class="x">—</td><td class="o"><b>先頭にある情報ほど確実に処理されること</b>。知らないと推測不能</td></tr>
+        <tr><td class="w">returns</td><td class="x">戻り値・利益</td><td class="o"><b>返品</b>。<code>handle returns and billing disputes</code></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t2">KANA</span>カタカナで覚えた語のズレ</h2>
+      <table>
+        <tr><td class="w">issue</td><td class="x">発行する</td><td class="o"><b>案件、問題</b>。<code>multi-issue request</code>＝複数の用件が入った依頼</td></tr>
+        <tr><td class="w">case</td><td class="x">箱・場合</td><td class="o"><b>対応案件</b>。<code>case facts</code>＝その案件の確定事実</td></tr>
+        <tr><td class="w">account</td><td class="x">アカウント（ID）</td><td class="o"><b>顧客口座、顧客そのもの</b>。<code>misidentified account</code>＝人物の取り違え</td></tr>
+        <tr><td class="w">channel</td><td class="x">チャンネル</td><td class="o"><b>通知の経路</b>。メール、SMS、Slack などの送り口</td></tr>
+        <tr><td class="w">ticket</td><td class="x">切符</td><td class="o"><b>問い合わせ案件の記録</b>。<code>historical tickets</code>＝過去の対応履歴</td></tr>
+        <tr><td class="w">legacy</td><td class="x">遺産</td><td class="o"><b>古くから残っている</b>。旧形式だがまだ使える、の意味でも出る</td></tr>
+        <tr><td class="w">material (adj.)</td><td class="x">物質の</td><td class="o"><b>結論を左右するほど重大な</b>。<code>materially affect</code></td></tr>
+        <tr><td class="w">precision</td><td class="x">精密さ</td><td class="o"><b>指摘の正しさの割合</b>。<code>high-precision categories</code>＝誤検知の少ない分類</td></tr>
+        <tr><td class="w">audit</td><td class="x">監査法人</td><td class="o"><b>抜き取って点検すること</b>。<code>audit a sample</code></td></tr>
+        <tr><td class="w">overhead</td><td class="x">頭上</td><td class="o"><b>本来の仕事以外にかかる余計な負荷</b></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">PAIR</span>綴りが近くて別物</h2>
+      <table>
+        <tr><td class="w">precede / proceed</td><td class="x"></td><td class="o"><b>〜より前に来る／先へ進める</b>。配置ルールと対応方針で両方出る</td></tr>
+        <tr><td class="w">access / assess</td><td class="x"></td><td class="o"><b>接続する／評価する</b>。<code>access failure</code>は接続失敗、<code>assessment shows</code>は評価の結果</td></tr>
+        <tr><td class="w">adopt / adapt</td><td class="x"></td><td class="o"><b>採用する／適応させる</b>。<code>adaptive decomposition</code>は適応的な分解</td></tr>
+        <tr><td class="w">principle / principal</td><td class="x"></td><td class="o"><b>原則／主要な</b>。<code>principle of least privilege</code></td></tr>
+        <tr><td class="w">substantial / substantive</td><td class="x"></td><td class="o"><b>量が多い／中身がある</b>。<code>substantive reviews</code>＝実のあるレビュー</td></tr>
+        <tr><td class="w">complement / compliment</td><td class="x"></td><td class="o"><b>補完する／褒める</b></td></tr>
+        <tr><td class="w">infer / imply</td><td class="x"></td><td class="o"><b>推測する／ほのめかす</b>。<code>relies on model inference</code>＝モデルの推測頼み（誤答の匂い）</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">N</span>知らないと骨格が取れない名詞</h2>
+      <table>
+        <tr><td class="w">triage</td><td class="x"></td><td class="o"><b>優先度を付けて振り分けること</b>。<code>quickly triage findings</code></td></tr>
+        <tr><td class="w">topology</td><td class="x"></td><td class="o"><b>つなぎ方の形</b>。<code>star-shaped topology</code>＝中心から放射状</td></tr>
+        <tr><td class="w">orchestration</td><td class="x"></td><td class="o"><b>複数を統括して動かすこと</b></td></tr>
+        <tr><td class="w">exhaustion</td><td class="x"></td><td class="o"><b>使い切ること、枯渇</b>。<code>context-window exhaustion</code></td></tr>
+        <tr><td class="w">drift</td><td class="x"></td><td class="o"><b>じわじわ逸れていくこと</b>。<code>instruction drift</code>＝指示から外れていく</td></tr>
+        <tr><td class="w">calibration</td><td class="x"></td><td class="o"><b>目盛り合わせ</b>。判断の当たり外れを実データで調整する</td></tr>
+        <tr><td class="w">consensus</td><td class="x"></td><td class="o"><b>複数の一致</b>。<code>requiring consensus</code>＝多数決を要求する（誤答の型）</td></tr>
+        <tr><td class="w">deliberation</td><td class="x"></td><td class="o"><b>じっくり検討すること</b></td></tr>
+        <tr><td class="w">coherence</td><td class="x"></td><td class="o"><b>筋が通っていること</b>。会話のつながりの自然さ</td></tr>
+        <tr><td class="w">discrepancy</td><td class="x"></td><td class="o"><b>数字や記述の食い違い</b></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">V</span>知らないと訳せない動詞</h2>
+      <table>
+        <tr><td class="w">preclude</td><td class="x"></td><td class="o"><b>起こり得なくする</b>。prevent より強い</td></tr>
+        <tr><td class="w">compromise</td><td class="x">妥協する</td><td class="o"><b>損なう、危うくする</b>。<code>compromise reliability</code></td></tr>
+        <tr><td class="w">suppress</td><td class="x"></td><td class="o"><b>握りつぶす、表に出さない</b>。<code>silent suppression</code>＝黙って無かったことにする</td></tr>
+        <tr><td class="w">anticipate</td><td class="x">期待する</td><td class="o"><b>先回りして備える</b>。<code>anticipate follow-up questions</code></td></tr>
+        <tr><td class="w">retain</td><td class="x">雇う</td><td class="o"><b>持ち続ける</b>。<code>retains its reasoning context</code>＝自分の思考の流れを引きずる</td></tr>
+        <tr><td class="w">persist</td><td class="x">しつこく続ける</td><td class="o"><b>保存されて残る</b>。<code>persistence across turns</code></td></tr>
+        <tr><td class="w">exceed</td><td class="x"></td><td class="o"><b>上限を超える</b>。<code>threshold exceeded</code></td></tr>
+        <tr><td class="w">bundle</td><td class="x"></td><td class="o"><b>まとめて1回にする</b>。<code>bundle tool requests</code></td></tr>
+        <tr><td class="w">condense</td><td class="x"></td><td class="o"><b>圧縮して短くする</b>。詳細が失われる文脈で出る</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">BIZ</span>サポート業務のドメイン語</h2>
+      <table>
+        <tr><td class="w">billing dispute</td><td class="x"></td><td class="o"><b>請求内容についての言い分の食い違い</b></td></tr>
+        <tr><td class="w">refund / reimburse</td><td class="x"></td><td class="o"><b>返金する</b></td></tr>
+        <tr><td class="w">warranty replacement</td><td class="x"></td><td class="o"><b>保証による交換</b></td></tr>
+        <tr><td class="w">signed for</td><td class="x"></td><td class="o"><b>受領サインが済んでいる</b>。<code>delivered and signed for</code>＝届いて受け取られている</td></tr>
+        <tr><td class="w">price matching</td><td class="x"></td><td class="o"><b>他社の値段に合わせること</b>。ポリシーの穴の定番例</td></tr>
+        <tr><td class="w">inventory</td><td class="x">発明</td><td class="o"><b>在庫</b>。<code>inventory tracking module</code></td></tr>
+        <tr><td class="w">venue</td><td class="x"></td><td class="o"><b>会場</b>。<code>book a venue</code>＝会場を押さえる</td></tr>
+        <tr><td class="w">intake form</td><td class="x"></td><td class="o"><b>初回の受付フォーム</b></td></tr>
+        <tr><td class="w">abandonment</td><td class="x">放棄</td><td class="o"><b>途中離脱</b>。<code>35% abandonment</code>＝35%が使うのをやめる</td></tr>
+        <tr><td class="w">stakeholder</td><td class="x"></td><td class="o"><b>意思決定に関わる関係者</b>。<code>stakeholders rejected</code>＝その案は却下済み、という制約</td></tr>
+        <tr><td class="w">onboarding</td><td class="x"></td><td class="o"><b>新メンバーの立ち上げ</b></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">IDM</span>そのまま訳すと意味不明な言い回し</h2>
+      <table>
+        <tr><td class="w">fresh eyes</td><td class="x"></td><td class="o"><b>先入観のない第三者の目</b>。独立レビューの根拠として出る</td></tr>
+        <tr><td class="w">fire-and-forget</td><td class="x"></td><td class="o"><b>投げたら結果を待たない方式</b>。バッチ処理の性質</td></tr>
+        <tr><td class="w">round trip</td><td class="x">往復旅行</td><td class="o"><b>やり取りの1往復</b>。増えると遅くなる</td></tr>
+        <tr><td class="w">happy path</td><td class="x"></td><td class="o"><b>正常系</b>。例外なくうまくいく経路</td></tr>
+        <tr><td class="w">overkill</td><td class="x"></td><td class="o"><b>やり過ぎ</b>。<code>architectural overkill</code>は誤答の指摘語</td></tr>
+        <tr><td class="w">shift the burden</td><td class="x"></td><td class="o"><b>負担を押し付ける</b>。誤答の型</td></tr>
+        <tr><td class="w">out of scope</td><td class="x"></td><td class="o"><b>対象範囲の外</b></td></tr>
+        <tr><td class="w">up to speed</td><td class="x"></td><td class="o"><b>必要な知識に追いついた状態</b></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">TIP</span>使い方</h2>
+      <ul>
+        <li>赤い×の欄が自分の頭に浮かんだら、その場で止まって緑に読み替える。新規暗記ではなく<b>上書き</b>の作業なので、回数だけ稼げばよい</li>
+        <li><code>address</code> <code>oversight</code> <code>conservative</code> <code>resolution</code> の4語は、誤読すると設問の要求そのものを取り違える。ここだけは確実に</li>
+        <li>制約条件を書く語（<code>without human oversight</code>、<code>stakeholders rejected</code>、<code>while preserving</code>）は、2択に絞ったあとの決め手になる</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const sz=document.getElementById('sz'),v=document.getElementById('szv');
+sz.addEventListener('input',()=>{document.documentElement.style.setProperty('--base',sz.value+'pt');v.textContent=sz.value+'pt';});
+</script>
+</body>
+</html>
