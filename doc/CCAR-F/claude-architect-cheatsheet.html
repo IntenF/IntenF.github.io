@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Claude認定アーキテクト Foundations 一目表</title>
+<style>
+:root{
+  --base: 6.7pt;          /* 用紙に入りきらない場合はここを 6.2〜7.2pt で調整 */
+  --ink:#16181d;
+  --sub:#5b616e;
+  --indigo:#22376f;
+  --azure:#4173ad;
+  --coral:#a3311d;
+  --rule:#cfd4dd;
+  --tint:#eef1f7;
+  --tint2:#f6f2ec;
+  --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas","Roboto Mono","Courier New",monospace;
+}
+@page{ size:A4 portrait; margin:7mm; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e6e8ec}
+body{
+  font-family:var(--jp); font-size:var(--base); line-height:1.34; color:var(--ink);
+  font-feature-settings:"palt" 1; text-align:justify;
+}
+.sheet{
+  width:210mm; min-height:297mm; padding:7mm; margin:12px auto; background:#fff;
+  box-shadow:0 2px 16px rgba(0,0,0,.18);
+}
+
+/* ---- 銘板 ---- */
+.plate{display:flex;align-items:flex-end;gap:4mm;border-bottom:1.6pt solid var(--ink);padding-bottom:1.6mm;margin-bottom:2mm}
+.plate h1{font-size:13.5pt;line-height:1;letter-spacing:.01em;font-weight:800}
+.plate h1 span{display:block;font-family:var(--mono);font-size:6.2pt;font-weight:500;letter-spacing:.16em;color:var(--azure);margin-bottom:1mm}
+.facts{margin-left:auto;display:flex;gap:3.2mm;text-align:right}
+.fact b{display:block;font-family:var(--mono);font-size:10pt;line-height:1;color:var(--indigo)}
+.fact i{font-style:normal;font-size:5.6pt;color:var(--sub);letter-spacing:.06em}
+
+/* ---- 配点リボン（署名要素） ---- */
+.ribbon{display:flex;height:5.2mm;margin-bottom:2.2mm;border:.5pt solid var(--ink)}
+.ribbon div{display:flex;align-items:center;justify-content:center;gap:.8mm;
+  font-family:var(--mono);font-size:5.6pt;color:#fff;border-right:.5pt solid #fff;overflow:hidden;white-space:nowrap}
+.ribbon div:last-child{border-right:0}
+.ribbon em{font-style:normal;font-size:5.2pt;font-family:var(--jp);opacity:.92}
+.d1{flex:27;background:#22376f}.d2{flex:18;background:#4173ad}
+.d3{flex:20;background:#2f6b62}.d4{flex:20;background:#7a5aa0}.d5{flex:15;background:#a3311d}
+
+/* ---- 段組 ---- */
+.cols{column-count:3;column-gap:4mm;column-fill:balance}
+section{break-inside:avoid;margin-bottom:2.4mm;padding-bottom:1.6mm;border-bottom:.5pt dotted var(--rule)}
+section:last-child{border-bottom:0}
+h2{font-size:7.4pt;font-weight:800;letter-spacing:.02em;display:flex;align-items:center;gap:1.2mm;margin-bottom:1.1mm}
+h2 .tag{font-family:var(--mono);font-size:5pt;font-weight:700;color:#fff;background:var(--ink);
+  padding:.3mm 1mm;border-radius:.6mm;letter-spacing:.04em}
+.t1{background:#22376f}.t2{background:#4173ad}.t3{background:#2f6b62}.t4{background:#7a5aa0}.t5{background:#a3311d}
+h3{font-size:6.4pt;font-weight:700;color:var(--indigo);margin:1mm 0 .5mm}
+ul{list-style:none}
+li{padding-left:2.4mm;position:relative;margin-bottom:.4mm}
+li::before{content:"";position:absolute;left:0;top:.62em;width:1.2mm;height:.35mm;background:var(--azure)}
+code,.k{font-family:var(--mono);font-size:.94em;background:var(--tint);padding:0 .5mm;border-radius:.4mm;color:var(--indigo);white-space:nowrap}
+b{color:var(--ink)}
+.no{color:var(--coral);font-weight:700}
+.ok{color:#2f6b62;font-weight:700}
+
+table{width:100%;border-collapse:collapse;margin:.6mm 0}
+td,th{border-bottom:.4pt solid var(--rule);padding:.5mm .8mm;vertical-align:top;text-align:left}
+th{font-size:5.6pt;color:var(--sub);font-weight:600;letter-spacing:.04em;border-bottom:.7pt solid var(--ink)}
+td:first-child{white-space:nowrap;font-family:var(--mono);font-size:.94em;color:var(--indigo)}
+tr:last-child td{border-bottom:0}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4mm}
+.pair>div{padding:1mm 1.2mm;border-radius:.8mm}
+.pair .y{background:#eaf1ec;border-left:1.2pt solid #2f6b62}
+.pair .n{background:#f7ebe8;border-left:1.2pt solid var(--coral)}
+.pair h4{font-size:5.8pt;letter-spacing:.06em;margin-bottom:.6mm}
+.pair .y h4{color:#2f6b62}.pair .n h4{color:var(--coral)}
+
+.trap{border:1pt solid var(--coral);padding:1.4mm;background:#fdf7f5}
+.trap h2{color:var(--coral)}
+.note{font-size:5.8pt;color:var(--sub);margin-top:.6mm}
+
+/* ---- 画面用ツールバー（印刷されません） ---- */
+.bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:#fff;padding:5px 12px;
+  display:flex;align-items:center;gap:12px;font-size:11px;z-index:9;font-family:var(--jp)}
+.bar input{width:120px}
+.bar button{font:inherit;background:#fff;color:var(--ink);border:0;padding:3px 10px;border-radius:3px;cursor:pointer}
+body{padding-top:30px}
+@media print{
+  html,body{background:#fff;padding:0}
+  .bar{display:none}
+  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span>文字サイズ</span>
+  <input type="range" id="sz" min="5.8" max="7.6" step="0.1" value="6.7">
+  <span id="szv">6.7pt</span>
+  <button onclick="print()">印刷 / PDF保存</button>
+  <span style="opacity:.6">1枚に収まらないときはスライダーを左へ</span>
+</div>
+
+<div class="sheet">
+
+  <div class="plate">
+    <h1><span>CLAUDE CERTIFIED ARCHITECT — FOUNDATIONS</span>試験対策 一目表</h1>
+    <div class="facts">
+      <div class="fact"><b>720</b><i>合格 / 100-1000</i></div>
+      <div class="fact"><b>4択</b><i>未回答減点なし</i></div>
+      <div class="fact"><b>8→4</b><i>シナリオ抽出</i></div>
+    </div>
+  </div>
+
+  <div class="ribbon">
+    <div class="d1">27% <em>エージェント設計</em></div>
+    <div class="d2">18% <em>ツール/MCP</em></div>
+    <div class="d3">20% <em>Claude Code</em></div>
+    <div class="d4">20% <em>プロンプト/構造化</em></div>
+    <div class="d5">15% <em>文脈/信頼性</em></div>
+  </div>
+
+  <div class="cols">
+
+    <section class="trap">
+      <h2>解答パターンの見抜き方</h2>
+      <div class="pair">
+        <div class="y"><h4>正解になりやすい</h4>
+          <ul>
+            <li><b>根本原因</b>を直す（症状の後処理でない）</li>
+            <li>保証が要る所は<b>コード側で強制</b>（フック・前提条件・トークン束縛）</li>
+            <li><b>最小権限</b>：汎用ツールを用途特化に置換</li>
+            <li>失敗は<b>構造化して返す</b>＋部分結果を活かす</li>
+            <li>曖昧・形式ブレには<b>Few-shot</b>、判定基準は<b>明示列挙</b></li>
+            <li>生成と<b>レビューは別インスタンス</b></li>
+          </ul>
+        </div>
+        <div class="n"><h4>まず誤答</h4>
+          <ul>
+            <li>別の<b>分類器</b>を足す、<b>感情分析</b>、モデルの<b>自己申告信頼度</b></li>
+            <li>汎用エラー、<b>沈黙スキップ</b>、1件失敗で全体停止、無限リトライ</li>
+            <li><b>大きいモデル</b>／広い文脈窓に替える</li>
+            <li>開発者に<b>手作業や分割</b>を強いる</li>
+            <li>3回走らせて<b>多数決</b></li>
+            <li>決定論が要る場面での<b>プロンプト強化のみ</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">D1</span>エージェントループ</h2>
+      <ul>
+        <li>継続判定は<code>stop_reason</code>のみ。<code>tool_use</code>→実行して履歴に追加し再送、<code>end_turn</code>→終了</li>
+        <li><span class="no">×</span> 文面から「完了」を読む／反復上限を主停止条件にする／テキスト有無で判定</li>
+        <li>APIは<b>ステートレス</b>。毎回<b>全履歴</b>を送る（遅延とコスト増の主因もこれ）</li>
+      </ul>
+      <table>
+        <tr><td>end_turn</td><td>完了、ユーザーへ提示</td></tr>
+        <tr><td>tool_use</td><td>ツール実行し結果を返す</td></tr>
+        <tr><td>max_tokens</td><td>途中切れ、上限見直し</td></tr>
+        <tr><td>stop_sequence</td><td>アプリ側で処理</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">D1</span>コーディネーターとサブエージェント</h2>
+      <ul>
+        <li>ハブ&amp;スポーク。<b>全通信はコーディネーター経由</b>（可観測性・均一なエラー処理・情報配分）</li>
+        <li>起動は<code>Task</code>ツール。コーディネーターの<code>allowedTools</code>に<code>"Task"</code>が必要</li>
+        <li>サブエージェントは<b>文脈が分離</b>。必要な情報はプロンプトに<b>明示的に全部渡す</b></li>
+        <li>1レスポンスに複数<code>Task</code>で<b>並列起動</b></li>
+        <li>重複調査は、委譲<b>前</b>に調査空間を分割して防ぐ</li>
+        <li>網羅漏れの犯人は<b>分解が狭すぎる</b>コーディネーター（サブは指示通り動いている）</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t1">D1</span>フック / 決定論</h2>
+      <table>
+        <tr><td>PostToolUse</td><td>結果をモデルが読む前に整形（日付・ステータス正規化、不要フィールド削除）</td></tr>
+        <tr><td>PreToolUse</td><td>ポリシー違反の呼び出しを遮断しエスカレーションへ</td></tr>
+      </table>
+      <ul>
+        <li>フック＝<b>決定論的100%</b>／プロンプト＝<b>確率的</b></li>
+        <li>金銭・法務・安全に関わるなら必ずフックか前提条件。第三者MCPの出力整形も<code>PostToolUse</code>が最善</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t2">D2</span>ツール設計</h2>
+      <ul>
+        <li>説明文が<b>選択の主要メカニズム</b>。誤選択の一次診断は説明の書き分け</li>
+        <li>説明に入れる：機能と戻り値／入力形式と例／エッジケース／<b>類似ツールとの境界</b></li>
+        <li>意味が重なるなら<b>改名して守備範囲を書き直す</b>（<code>analyze_content</code>→<code>extract_web_results</code>）</li>
+        <li>汎用は制約付きに置換（<code>fetch_url</code>→<code>load_document</code>）</li>
+        <li>ツールを持たせすぎると選択精度が落ちる。役割に必要な分だけ</li>
+        <li>組み込みツールに負ける時はMCP側の説明で固有の利点を明記</li>
+      </ul>
+      <table>
+        <tr><td>auto</td><td>既定。テキスト回答もあり得る</td></tr>
+        <tr><td>any</td><td>必ず何かのツールを呼ぶ</td></tr>
+        <tr><td>tool:name</td><td>特定ツールを強制、初手固定に</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t2">D2</span>MCP</h2>
+      <ul>
+        <li>3種：<b>ツール</b>（行為）／<b>リソース</b>（読み取り用の地図。探索的な呼び出しを削減）／<b>プロンプト</b></li>
+        <li><code>.mcp.json</code>＝プロジェクト、VCS管理、<code>${GITHUB_TOKEN}</code>で秘密情報を外出し。<code>~/.claude.json</code>＝個人・実験用</li>
+        <li>標準的な連携は既存のコミュニティ製サーバーを優先</li>
+        <li>エラーは<code>isError:true</code>＋<code>errorCategory</code>／<code>isRetryable</code>／試行クエリ／部分結果</li>
+        <li><b>「0件」と「アクセス失敗」を区別</b>して返す</li>
+      </ul>
+      <table>
+        <tr><td>transient</td><td>再試行可、指数バックオフ</td></tr>
+        <tr><td>validation</td><td>入力を直して再試行</td></tr>
+        <tr><td>business</td><td>再試行不可、代替案を提示</td></tr>
+        <tr><td>permission</td><td>エスカレーション</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">D3</span>CLAUDE.md と rules</h2>
+      <table>
+        <tr><td>~/.claude/</td><td>ユーザー。VCS非共有、個人設定</td></tr>
+        <tr><td>.claude/ or 直下</td><td>プロジェクト。VCS管理、全員に適用</td></tr>
+        <tr><td>サブディレクトリ</td><td>その配下の作業にのみ適用</td></tr>
+      </table>
+      <ul>
+        <li>「新メンバーだけ指示が効かない」＝ユーザーレベルに書いてある。プロジェクトへ移す</li>
+        <li><code>@./standards/x.md</code>で分割参照（スペースなし、ネスト最大5）</li>
+        <li><code>.claude/rules/*.md</code>＋YAML <code>paths:["**/*.test.tsx"]</code>で<b>該当ファイル編集時のみ</b>読み込み。散在する規約に最適</li>
+        <li>常時適用＝CLAUDE.md／必要時だけ＝スキル／パス連動＝rules</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">D3</span>スキルとコマンド</h2>
+      <table>
+        <tr><td>context: fork</td><td>隔離文脈で実行。冗長出力や検討過程で本流を汚さない</td></tr>
+        <tr><td>allowed-tools</td><td>使えるツールを限定（破壊的操作の防止）</td></tr>
+        <tr><td>argument-hint</td><td>引数忘れを防ぐヒント</td></tr>
+      </table>
+      <ul>
+        <li><code>.claude/commands|skills/</code>＝チーム共有、<code>~/.claude/…</code>＝個人</li>
+        <li>個人版は<b>別名</b>にする（<code>/my-commit</code>）。同名だとチーム版が隠れ更新も届かない</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">D3</span>実行モードとCLI</h2>
+      <div class="pair">
+        <div class="y"><h4>計画モード</h4>
+          <ul><li>数十ファイル規模</li><li>有効な選択肢が複数</li><li>アーキテクチャ判断</li><li>不慣れなコードベース</li></ul></div>
+        <div class="n" style="background:#eef1f7;border-left-color:var(--azure)"><h4 style="color:var(--indigo)">直接実行</h4>
+          <ul><li>単一ファイルの修正</li><li>明確なスタックトレース</li><li>理解済みの小変更</li></ul></div>
+      </div>
+      <ul>
+        <li>CI は<code>-p</code>／<code>--print</code>（対話待ちを防ぐ唯一の正解）。<code>--output-format json</code>＋<code>--json-schema</code>でインラインコメント自動投稿</li>
+        <li><code>/compact</code>要約、<code>/memory</code>編集、<code>--resume</code>再開、<code>fork_session</code>で分岐比較</li>
+        <li>再レビュー時は<b>前回の指摘を文脈に含め</b>、新規と未解決のみ報告</li>
+        <li>探索はサブエージェントに委譲し、本流には要約だけ返す</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">D4</span>構造化出力</h2>
+      <ul>
+        <li>JSONスキーマ付き<code>tool_use</code>が最も確実。<b>構文エラーは消えるが意味エラーは消えない</b></li>
+        <li>必須は「常に取得できる項目」だけ。<b>必須にすると欠損時に捏造する</b></li>
+        <li>欠損しうる項目は<code>["string","null"]</code></li>
+        <li>enumに<code>other</code>＋詳細文字列、<code>unclear</code>を用意（誤分類より正直な不明）</li>
+        <li>正規化ルールをプロンプトに明記（ISO 8601、金額＋通貨、割合は小数）</li>
+        <li>意味エラー対策：Pydantic検証→<b>元文書・誤出力・具体的な検証エラー</b>を添えて再試行。<code>stated</code>と<code>calculated</code>を両方出させて矛盾検知</li>
+        <li>再試行が無意味な場面：情報が元文書に存在しない</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">D4</span>プロンプト技法</h2>
+      <ul>
+        <li><b>Few-shot 2〜4例</b>が効く場面：出力形式の統一、曖昧ケースの判断、許容パターンと問題の線引き、多様な文書形式からの抽出</li>
+        <li>「もっと保守的に」は不可。<b>報告する条件と無視する条件を列挙</b>し、深刻度は各段にコード例を付ける</li>
+        <li>プロンプトチェイニング＝予測可能な反復作業。動的分解＝範囲が事前に読めない調査</li>
+        <li>14ファイル一括レビューは注意が薄まる。<b>ファイル単位のパス＋横断パス</b>に分ける</li>
+        <li>不慣れな領域や含意が見えない設計はインタビュー（先に質問させる）</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t4">D4</span>Message Batches API</h2>
+      <table>
+        <tr><td>コスト</td><td>同期比 50% 削減</td></tr>
+        <tr><td>処理</td><td>最大24時間、遅延SLAなし</td></tr>
+        <tr><td>制約</td><td>1リクエスト1レスポンス。<b>マルチターンのツール呼び出し不可</b></td></tr>
+        <tr><td>custom_id</td><td>結果の突合と失敗分だけの再送</td></tr>
+      </table>
+      <ul>
+        <li>バッチ可＝夜間レポート、週次監査、大量文書。不可＝マージ前チェックなど<b>人が待つ処理</b></li>
+        <li>SLA計算：30時間保証なら送信期限は 30−24＝<b>6時間前</b></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">D5</span>コンテキスト管理</h2>
+      <ul>
+        <li><b>中間消失</b>：重要事項は先頭と末尾へ。見出しで区切ると中間も拾いやすい</li>
+        <li>逐次要約は数値・日付・割合を失う。金額や注文番号は<b>ケース事実ブロック</b>に切り出し全プロンプトへ添付</li>
+        <li>ツール結果は必要な項目だけにトリミング（<code>PostToolUse</code>）</li>
+        <li>上流は生データでなく<b>構造化データ</b>（事実・引用・関連度）を返す設計に直すのが根治</li>
+        <li>長い調査はスクラッチパッドに要点を書き出す。状態をJSONで永続化すれば再開できる</li>
+        <li>長期の想起が必要ならセマンティック検索、単発セッションなら過剰</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">D5</span>エスカレーションと人の監督</h2>
+      <div class="pair">
+        <div class="y"><h4>妥当な契機</h4>
+          <ul><li>人を出せという明示要求（即時。解決を試みない）</li><li>ポリシーが沈黙（他社価格対抗など）</li><li>試行しても進展しない</li><li>閾値超の金銭操作（フックで強制）</li><li>顧客が複数一致→<b>追加識別子を求める</b></li></ul></div>
+        <div class="n"><h4>使えない指標</h4>
+          <ul><li>感情分析（不満≠複雑さ）</li><li>自己申告の信頼度</li><li>専用分類器の新設</li></ul></div>
+      </div>
+      <ul>
+        <li>不満の表明は段階対応（共感→具体策→再要求で移管）</li>
+        <li>引き継ぎは自己完結した構造化サマリ（顧客ID、原因、実施済み対応、推奨、移管理由）。担当者に全文は見えない</li>
+        <li>抽出の自動化はフィールド単位の信頼度＋<b>層化サンプリング</b>。全体97%が特定タイプの40%誤りを隠す</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t5">D5</span>出所と不確実性</h2>
+      <ul>
+        <li>主張とソースの対応を壊さない（URL・名称・公開日・信頼度）</li>
+        <li>矛盾する数値は<b>片方を選ばず両方を帰属付きで保持</b>し、注釈してコーディネーターに委ねる</li>
+        <li>年次を書けば「矛盾」ではなく推移として読める</li>
+        <li>統合時は<b>カバレッジ注記</b>（十分な根拠がある結論と、欠落した領域を明示）</li>
+        <li>種別ごとに表現を変える：財務は表、ニュースは散文、技術的発見は構造化リスト</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="tag t3">D3</span>組み込みツールの使い分け</h2>
+      <table>
+        <tr><td>Glob</td><td>名前・拡張子でファイルを探す</td></tr>
+        <tr><td>Grep</td><td>中身を探す（関数名、エラー文、import）</td></tr>
+        <tr><td>Read / Write</td><td>全文読み書き</td></tr>
+        <tr><td>Edit</td><td>一意な文字列一致で部分置換。失敗時はRead+Writeへ</td></tr>
+        <tr><td>Bash</td><td>git、npm、テスト、ビルド</td></tr>
+      </table>
+      <p class="note">調査は段階的に。Grepで入口→Readで確認→Grepで利用箇所→Read、と広げる。</p>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const sz=document.getElementById('sz'),v=document.getElementById('szv');
+sz.addEventListener('input',()=>{document.documentElement.style.setProperty('--base',sz.value+'pt');v.textContent=sz.value+'pt';});
+</script>
+</body>
+</html>
